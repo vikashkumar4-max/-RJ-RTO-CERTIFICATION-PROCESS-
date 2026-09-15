@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RJ RTO Certification Process - Interactive Training</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-badge">RTO</div>
+      <div class="logo-text">
+        <h1>RJ RTO Certification Process</h1>
+        <span>Interactive SOP Employee Training Deck</span>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="step-indicator">
+        Step <span id="current-step-num">1</span> / <span id="total-steps-num">10</span>
+      </div>
+      <button id="toggle-audio-btn" class="audio-toggle-btn active" title="Voice Guidance On/Off">
+        <i data-lucide="volume-2"></i>
+        <span>Audio Guide On</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- LEFT SIDE: Interactive 3D Animated Trainer Avatar -->
+    <section class="avatar-sidebar">
+      <div class="avatar-card">
+        <!-- 3D Stage Visual -->
+        <div class="stage-background">
+          <div class="glow-orb"></div>
+        </div>
+
+        <!-- Animated Avatar Canvas Container -->
+        <div class="avatar-stage">
+          <div class="speaker-wave-container" id="speaker-waves">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+          </div>
+
+          <!-- Stylized Avatar Close-Up View -->
+          <div class="avatar-wrapper" id="avatar-wrapper">
+            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="3D Trainer Persona" />
+            <div class="avatar-status-badge" id="avatar-status">
+              <span class="status-dot"></span>
+              <span id="status-text">Ready to Guide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Speech / Script Bubble -->
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <i data-lucide="bot"></i>
+            <span>3D Trainer Instruction (Hindi)</span>
+          </div>
+          <p id="dialogue-text">Namaste! Naye employees ka RJ RTO Certification Training me swagat hai. Aaj hum poora 10-step process seekhenge.</p>
+          <button id="replay-voice-btn" class="btn-speech">
+            <i data-lucide="play-circle"></i> Suniye Voice Instruction
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDE: Modern Glassmorphic Step Interactive Deck -->
+    <section class="content-viewport">
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+
+      <!-- Step Cards Container -->
+      <div class="step-card-display" id="step-card-display">
+        <!-- Active Step Card Inserted via JavaScript -->
+      </div>
+
+      <!-- Bottom Navigation Bar -->
+      <footer class="deck-nav">
+        <button id="prev-btn" class="nav-btn prev" disabled>
+          <i data-lucide="arrow-left"></i> Previous Step
+        </button>
+
+        <!-- Thumbnails / Timeline Selector -->
+        <div class="step-dots-timeline" id="step-dots-timeline">
+          <!-- Dots generated via JavaScript -->
+        </div>
+
+        <button id="next-btn" class="nav-btn next">
+          Next Step <i data-lucide="arrow-right"></i>
+        </button>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
