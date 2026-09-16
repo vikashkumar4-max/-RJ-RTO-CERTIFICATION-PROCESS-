@@ -3,7 +3,7 @@ const stepsData = [
   {
     step: 1,
     title: "Pan India Sheet Check Karein",
-    category: "Verification Phase",
+    category: "New order /new installation",
     system: "Pan India Master Database",
     instructions: [
       "Master Pan India Sheet open karein aur customer request detail verify karein.",
