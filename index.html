@@ -3,299 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>live dashboard and training metarial</title>
+  <title>WheelsEye AIS | Executive Portal</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Royal Top Strip Bar -->
-  <div class="royal-top-strip">
+  <!-- Top Glass Banner -->
+  <div class="glass-top-bar">
     <div class="portal-container flex-between">
-      <div class="emblem-tag">
-        <i data-lucide="award"></i>
-        <span>MRATYUNJAY BRAHMAVANSHI</span>
+      <div class="brand-pill">
+        <span class="live-dot"></span>
+        <span>MRATYUNJAY BRAHMAVANSHI | INTERNAL PORTAL</span>
       </div>
-      <div class="top-meta-links">
-        <span><i data-lucide="shield-check"></i> ONLY USE FOR LEARNING </span>
-        <span class="divider">|</span>
-        <span>Helpline: 9896873022</span>
+      <div class="support-link">
+        <i data-lucide="headphone-off"></i> Helpline: 9896873022
       </div>
     </div>
   </div>
 
-  <!-- Executive Header -->
-  <header class="executive-header">
+  <!-- Header Section -->
+  <header class="app-header">
     <div class="portal-container flex-between">
-      
-      <!-- Brand & Emblem -->
-      <div class="portal-brand">
-        <div class="royal-emblem-seal">
-          <i data-lucide="landmark"></i>
+      <div class="app-brand">
+        <div class="brand-icon">
+          <i data-lucide="shield-check"></i>
         </div>
-        <div class="brand-info">
-          <h1>AIS GPS CERTIFICATION</h1>
-          <p>CERTIFICATION PROCESS IN WHEELSEYE AIS TEAM</p>
+        <div class="brand-text">
+          <h1>WheelsEye AIS</h1>
+          <p>RTO Certification & Live Analytics</p>
         </div>
       </div>
 
-      <!-- SUBJECT MODULE SELECTOR -->
-      <div class="topic-selector-wrapper">
-        <label for="training-module-select"><i data-lucide="layers"></i> SUBJECT MODULE:</label>
-        <select id="training-module-select" class="royal-select" onchange="togglePortalView(this.value)">
-          <option value="rto-certification" selected>RJ RTO Device Certification SOP</option>
-          <option value="today-progress-report">📊 Today Progress Report</option>
-          <option value="dl-verification" disabled>DL Verification System (Future Module)</option>
-          <option value="vehicle-inspection" disabled>Vehicle Fitness Inspection (Future Module)</option>
-          <option value="gps-vltd" disabled>AIS-140 GPS & VLTD Tracking (Future Module)</option>
-        </select>
-      </div>
+      <!-- Navigation Tabs -->
+      <nav class="segmented-control">
+        <button id="nav-sop" class="segment-btn active" onclick="togglePortalView('rto-certification')">
+          <i data-lucide="book-open"></i> SOP Training
+        </button>
+        <button id="nav-report" class="segment-btn" onclick="togglePortalView('today-progress-report')">
+          <i data-lucide="bar-chart-2"></i> Progress Report
+        </button>
+      </nav>
 
-      <!-- Header Actions -->
       <div class="header-actions">
-        <button id="toggle-audio-btn" class="royal-gold-btn active">
+        <button id="toggle-audio-btn" class="glass-btn active">
           <i data-lucide="volume-2"></i>
-          <span>Voice Guide Active</span>
+          <span>Voice Guide On</span>
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- Main Multi-Functional Portal Layout -->
-  <main class="portal-container portal-grid">
+  <!-- Main Grid -->
+  <main class="portal-container main-grid">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- Left Column: Audio Trainer Character -->
     <aside class="sidebar-column">
-
-      <!-- Executive Audio Console -->
-      <div class="royal-card audio-console-card">
-        <div class="card-classic-header">
-          <i data-lucide="mic"></i>
-          <span>LEARN FROM AUDIO GUIDE</span>
-        </div>
-
-        <div class="speaker-stage">
-          <div class="speaker-wave-container" id="speaker-waves">
-            <div class="wave wave1"></div>
-            <div class="wave wave2"></div>
-            <div class="wave wave3"></div>
-          </div>
-
-          <div class="avatar-classic-frame" id="avatar-wrapper">
-            <img id="avatar-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC64lDi3RdETcheGYiHw3YQUStNo8R4E6pr9iMazMhphQYgtN-CzMAaQs&s" alt="Official Avatar" />
-          </div>
-
-          <div class="voice-badge-pill">
-            <span class="pulse-dot"></span>
-            <span id="status-text">Voice Assistance Ready</span>
+      
+      <div class="glass-card character-card">
+        <div class="card-tag"><i data-lucide="sparkles"></i> AI Trainer</div>
+        
+        <!-- Animated 2D/Canvas Male Character -->
+        <div class="character-wrapper">
+          <canvas id="maleAvatarCanvas" width="220" height="220"></canvas>
+          <div class="audio-wave-bar" id="speaker-waves">
+            <span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
 
-        <div class="audio-actions-area">
-          <button id="replay-voice-btn" class="royal-navy-btn">
-            <i data-lucide="play-circle"></i>
-            <span>Replay Audio</span>
-          </button>
+        <div class="trainer-status">
+          <span class="status-indicator" id="status-dot"></span>
+          <span id="status-text">Ready to Guide</span>
         </div>
 
-        <p id="dialogue-text" style="display: none !important;"></p>
+        <button id="replay-voice-btn" class="primary-pill-btn">
+          <i data-lucide="play"></i> Replay Voice Instructions
+        </button>
+
+        <p id="dialogue-text" style="display:none;"></p>
       </div>
 
-      <!-- Module Directory Panel -->
-      <div class="royal-card module-directory-card">
-        <div class="card-sub-header">
-          <i data-lucide="book-open"></i>
-          <span>Available Training Topics</span>
-        </div>
-        <ul class="topic-list">
-          <li id="menu-item-sop" class="active" onclick="togglePortalView('rto-certification')">
-            <i data-lucide="check-circle-2"></i>
-            <span>RJ RTO Device Certification Process</span>
+      <!-- Quick Topics -->
+      <div class="glass-card menu-card">
+        <div class="card-title"><i data-lucide="layers"></i> Training Modules</div>
+        <ul class="clean-menu">
+          <li class="menu-item active" onclick="togglePortalView('rto-certification')">
+            <i data-lucide="check-circle-2"></i> RJ RTO Device SOP
           </li>
-          
-          <!-- TODAY PROGRESS REPORT SIDEBAR BUTTON -->
-          <li id="menu-item-report" class="highlight-report-item" onclick="togglePortalView('today-progress-report')">
-            <i data-lucide="bar-chart-3" class="gold-icon"></i>
-            <span>Today Progress Report</span>
-            <span class="live-pill">LIVE</span>
-          </li>
-
-          <li class="locked">
-            <i data-lucide="lock"></i>
-            <span>Common RTO certification process</span>
-          </li>
-          <li class="locked">
-            <i data-lucide="lock"></i>
-            <span>Mines certification process</span>
+          <li class="menu-item" onclick="togglePortalView('today-progress-report')">
+            <i data-lucide="trending-up"></i> Today's Common RTO Report
           </li>
         </ul>
       </div>
 
     </aside>
 
-    <!-- RIGHT MAIN CONTENT AREA -->
-    <section class="main-column">
+    <!-- Right Column: Views -->
+    <section class="content-column">
 
-      <!-- VIEW 1: TRAINING DASHBOARD VIEWPORT -->
+      <!-- VIEW 1: SOP TRAINING -->
       <div id="training-portal-view">
         
-        <div class="royal-card progress-card flex-between">
-          <div class="module-meta">
-            <span class="meta-label">ACTIVE TOPIC:</span>
-            <strong class="meta-title">RJ RTO Device Certification & Verification SOP</strong>
+        <div class="glass-card header-progress-card flex-between">
+          <div>
+            <span class="section-sub">MODULE 01</span>
+            <h2 class="section-title">RJ RTO Device Certification & Verification SOP</h2>
           </div>
-          <div class="step-count-pill">
-            STEP <span id="current-step-num">1</span> OF <span id="total-steps-num">10</span>
-          </div>
-        </div>
-
-        <div class="royal-card progress-bar-panel">
-          <div class="progress-info flex-between">
-            <span>Overall Module Progress</span>
-            <span id="progress-percent" class="gold-accent-text">10% Completed</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-bar"></div>
+          <div class="step-badge">
+            Step <span id="current-step-num">1</span>/<span id="total-steps-num">10</span>
           </div>
         </div>
 
-        <div class="royal-card dynamic-content-card" id="step-card-display">
-          <!-- Dynamic Step Content Rendered by script.js -->
+        <div class="glass-card progress-track-card">
+          <div class="track-info flex-between">
+            <span>Completion Rate</span>
+            <span id="progress-percent" class="gradient-text">10%</span>
+          </div>
+          <div class="track-bg">
+            <div class="track-fill" id="progress-bar"></div>
+          </div>
         </div>
 
-        <footer class="royal-card nav-footer flex-between">
-          <button id="prev-btn" class="classic-nav-btn" disabled>
-            <i data-lucide="arrow-left"></i> Previous Step
+        <div id="step-card-display">
+          <!-- Dynamic Step Content -->
+        </div>
+
+        <div class="glass-card nav-footer flex-between">
+          <button id="prev-btn" class="secondary-btn" disabled>
+            <i data-lucide="chevron-left"></i> Previous
           </button>
 
-          <div class="step-dots-timeline" id="step-dots-timeline">
-            <!-- Dynamic Dots Rendered by script.js -->
-          </div>
+          <div class="dots-timeline" id="step-dots-timeline"></div>
 
-          <button id="next-btn" class="classic-nav-btn primary">
-            Next Step <i data-lucide="arrow-right"></i>
+          <button id="next-btn" class="primary-btn">
+            Next Step <i data-lucide="chevron-right"></i>
           </button>
-        </footer>
+        </div>
 
       </div>
 
-      <!-- VIEW 2: REPORT DASHBOARD VIEW (EXACT COMMON RTO REPORT LAYOUT) -->
+      <!-- VIEW 2: REDESIGNED COMMON RTO REPORT -->
       <div id="report-dashboard-view" style="display: none;">
-        <div class="royal-card report-outer-card">
-          
-          <div class="report-header-flex flex-between">
-            <div class="report-meta">
-              <span class="badge-live-tag"><i data-lucide="radio"></i> LIVE REAL-TIME DATA</span>
-              <span id="report-date-display" class="report-date-badge">9/17/2026</span>
-            </div>
-            <button class="royal-gold-btn" onclick="fetchLiveDataFromSheet()">
-              <i data-lucide="rotate-cw"></i> Refresh Metrics
+        
+        <div class="glass-card report-header flex-between">
+          <div>
+            <div class="live-status-pill"><span class="pulse"></span> LIVE METRICS</div>
+            <h2 class="report-main-title">Common RTO Live Overview</h2>
+          </div>
+          <div class="report-actions flex-center">
+            <span id="report-date-display" class="date-chip">9/17/2026</span>
+            <button class="icon-btn" onclick="fetchLiveDataFromSheet()" title="Refresh Data">
+              <i data-lucide="rotate-cw"></i>
             </button>
           </div>
+        </div>
 
-          <!-- COMMON RTO REPORT CARD -->
-          <div class="common-rto-wrapper">
-            <div class="rto-header-banner">Common RTO</div>
+        <!-- Modern Common RTO Card Structure -->
+        <div class="modern-report-container">
+          
+          <!-- State Table Section -->
+          <div class="glass-card modern-table-card">
+            <div class="card-heading">State Wise Certificates</div>
+            <table class="apple-table">
+              <thead>
+                <tr>
+                  <th>STATE</th>
+                  <th class="text-right">Certificate Issued</th>
+                </tr>
+              </thead>
+              <tbody id="state-rows-body">
+                <!-- Dynamic Rows -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td class="text-right" id="grand-total-val">166</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Total Count & Agent Cards -->
+          <div class="stats-side-stack">
             
-            <div class="rto-grid-container">
+            <!-- Grand Total Feature Card -->
+            <div class="glass-card grand-total-feature-card">
+              <span class="stat-label">Grand Total Issued</span>
+              <div class="huge-number gradient-text" id="big-grand-total">166</div>
+            </div>
+
+            <!-- Agent Performance Stack -->
+            <div class="agent-grid">
               
-              <!-- COLUMN 1 & 2: STATE & CERTIFICATE TABLE -->
-              <div class="rto-table-section">
-                <table class="rto-data-table">
-                  <thead>
-                    <tr>
-                      <th>STATE</th>
-                      <th>Certificate Issued</th>
-                    </tr>
-                  </thead>
-                  <tbody id="state-rows-body">
-                    <!-- Rendered Dynamically via script.js -->
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td>TOTAL</td>
-                      <td id="grand-total-val">166</td>
-                    </tr>
-                  </tfoot>
-                </table>
+              <div class="glass-card agent-card highlight-card">
+                <div class="agent-meta">
+                  <div class="team-avatars">
+                    <span>R</span><span>L</span><span>R</span>
+                  </div>
+                  <div class="team-names">RAJSHEKHAR, LAKSHYA, RAGHAV</div>
+                </div>
+                <div class="agent-count score-yellow" id="score-team-1">76</div>
               </div>
 
-              <!-- COLUMN 3: GRAND TOTAL BIG BLOCK -->
-              <div class="rto-grand-total-block">
-                <span id="big-grand-total">166</span>
+              <div class="glass-card agent-card">
+                <div class="agent-meta">
+                  <div class="single-avatar">V</div>
+                  <div class="single-name">VIKASH</div>
+                </div>
+                <div class="agent-count score-peach" id="score-vikash">30</div>
               </div>
 
-              <!-- COLUMN 4: AGENTS BREAKDOWN -->
-              <div class="rto-agents-section">
-                
-                <div class="agent-card-row">
-                  <div class="agent-names-box green-box">
-                    <div>RAJSHEKHAR</div>
-                    <div>LAKSHYA</div>
-                    <div>RAGHAV</div>
-                  </div>
-                  <div class="agent-score-box yellow-bg" id="score-team-1">76</div>
+              <div class="glass-card agent-card">
+                <div class="agent-meta">
+                  <div class="single-avatar">S</div>
+                  <div class="single-name">SONU</div>
                 </div>
-
-                <div class="agent-card-row margin-top-box">
-                  <div class="agent-names-box green-box single-agent">
-                    <div>VIKASH</div>
-                  </div>
-                  <div class="agent-score-box peach-bg" id="score-vikash">30</div>
-                </div>
-
-                <div class="agent-card-row">
-                  <div class="agent-names-box green-box single-agent">
-                    <div>SONU</div>
-                  </div>
-                  <div class="agent-score-box peach-bg" id="score-sonu">61</div>
-                </div>
-
+                <div class="agent-count score-peach" id="score-sonu">61</div>
               </div>
 
             </div>
+
           </div>
 
         </div>
+
       </div>
 
     </section>
 
   </main>
 
-  <!-- VIEW TOGGLE SCRIPT -->
   <script>
     function togglePortalView(val) {
       const trainingView = document.getElementById('training-portal-view');
       const reportView = document.getElementById('report-dashboard-view');
-      const dropdown = document.getElementById('training-module-select');
-      const sopItem = document.getElementById('menu-item-sop');
-      const reportItem = document.getElementById('menu-item-report');
+      const navSop = document.getElementById('nav-sop');
+      const navReport = document.getElementById('nav-report');
 
       if (val === 'today-progress-report') {
         trainingView.style.display = 'none';
         reportView.style.display = 'block';
-
-        if(dropdown) dropdown.value = 'today-progress-report';
-        if(sopItem) sopItem.classList.remove('active');
-        if(reportItem) reportItem.classList.add('active');
+        navSop.classList.remove('active');
+        navReport.classList.add('active');
       } else {
         trainingView.style.display = 'block';
         reportView.style.display = 'none';
-
-        if(dropdown) dropdown.value = 'rto-certification';
-        if(sopItem) sopItem.classList.add('active');
-        if(reportItem) reportItem.classList.remove('active');
+        navSop.classList.add('active');
+        navReport.classList.remove('active');
       }
-
       if (window.lucide) lucide.createIcons();
     }
   </script>
-
   <script src="script.js"></script>
 </body>
 </html>
