@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WheelsEye AIS | OnePlus Luxury Edition</title>
+  <title>WheelsEye AIS </title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,10 +15,10 @@
     <div class="portal-container flex-between">
       <div class="brand-badge">
         <span class="red-square"></span>
-        <span>ONEPLUS EXECUTIVE AIS PORTAL</span>
+        <span>MRATYUNJAY BRAHMAVANSHI |AIS PORTAL</span>
       </div>
       <div class="top-support">
-        <i data-lucide="shield-alert"></i> NEVER SETTLE • LIVE DATA ENGINE ACTIVE
+        <i data-lucide="shield-alert"></i>• LIVE DATA ENGINE ACTIVE
       </div>
     </div>
   </div>
@@ -41,8 +41,11 @@
         <button id="nav-sop" class="capsule-btn" onclick="togglePortalView('rto-certification')">
           <i data-lucide="book-open"></i> SOP Training
         </button>
-        <button id="nav-report" class="capsule-btn active" onclick="togglePortalView('today-progress-report')">
+        <button id="nav-report" class="capsule-btn" onclick="togglePortalView('today-progress-report')">
           <i data-lucide="activity"></i> Common RTO Report
+        </button>
+        <button id="nav-ops" class="capsule-btn active" onclick="togglePortalView('operations-dashboard')">
+          <i data-lucide="layout-dashboard"></i> Operations Dashboard
         </button>
       </nav>
 
@@ -79,20 +82,23 @@
       <div class="op-card menu-card">
         <div class="card-title"><i data-lucide="layers"></i> Views</div>
         <ul class="op-menu-list">
-          <li class="op-menu-item" onclick="togglePortalView('rto-certification')">
+          <li class="op-menu-item" id="side-sop" onclick="togglePortalView('rto-certification')">
             <i data-lucide="check-circle-2"></i> RJ RTO Device SOP
           </li>
-          <li class="op-menu-item active" onclick="togglePortalView('today-progress-report')">
+          <li class="op-menu-item" id="side-report" onclick="togglePortalView('today-progress-report')">
             <i data-lucide="trending-up"></i> Live Common RTO Report
+          </li>
+          <li class="op-menu-item active" id="side-ops" onclick="togglePortalView('operations-dashboard')">
+            <i data-lucide="sliders"></i> Operations Dashboard
           </li>
         </ul>
       </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <section class="content-column">
 
-      <!-- View 1: SOP Training -->
+      <!-- View 1: SOP Training Module (UNTOUCHED) -->
       <div id="training-portal-view" style="display: none;">
         <div class="op-card header-progress-card flex-between">
           <div>
@@ -116,11 +122,9 @@
         </div>
       </div>
 
-      <!-- View 2: High-End OnePlus Report Card Layout -->
-      <div id="report-dashboard-view">
-        
+      <!-- View 2: Common RTO Report Layout -->
+      <div id="report-dashboard-view" style="display: none;">
         <div class="op-card report-header-banner">
-          <div class="banner-overlay"></div>
           <div class="banner-content flex-between">
             <div>
               <div class="live-pill"><span class="red-pulse-glow"></span> INSTANT LIVE SYNC</div>
@@ -128,7 +132,7 @@
               <p class="op-sub-text">Real-time state wise metrics & executive leaderboard</p>
             </div>
             <div class="flex-center">
-              <span id="report-date-display" class="op-date-chip">9/18/2026</span>
+              <span id="report-date-display" class="op-date-chip">9/17/2026</span>
               <button class="op-refresh-trigger" onclick="fetchLiveDataFromSheet()" title="Instant Sync">
                 <i data-lucide="rotate-cw" id="sync-icon"></i> Sync Now
               </button>
@@ -136,14 +140,11 @@
           </div>
         </div>
 
-        <!-- OnePlus Grid Showcase -->
         <div class="op-dashboard-grid">
-          
-          <!-- Left Stack: State Table -->
           <div class="op-card op-table-card">
             <div class="card-header-line">
               <h3>State Wise Certificates</h3>
-              <span class="badge-black">AUTO-UPDATED</span>
+              <span class="badge-black">COMMOM RTO DATA TAB</span>
             </div>
             <div class="table-scroll-wrap">
               <table class="oneplus-table">
@@ -153,40 +154,31 @@
                     <th class="text-right">ISSUED COUNT</th>
                   </tr>
                 </thead>
-                <tbody id="state-rows-body">
-                  <!-- Dynamic Rows -->
-                </tbody>
+                <tbody id="state-rows-body"></tbody>
               </table>
             </div>
           </div>
 
-          <!-- Right Stack: Grand Total Hero Block & Leaderboard -->
           <div class="op-right-stack">
-            
-            <!-- Hero Dark Grand Total Card -->
             <div class="op-card op-hero-total-card">
               <div class="card-bg-watermark">1+</div>
               <span class="op-label">GRAND TOTAL ISSUED</span>
-              <div class="op-giant-stat" id="big-grand-total">0</div>
+              <div class="op-giant-stat" id="big-grand-total">153</div>
               <div class="op-card-footer">
-                <i data-lucide="zap"></i> Updated Live via Apps Script Engine
+                <i data-lucide="zap"></i> Live Streamed From Sheet
               </div>
             </div>
 
-            <!-- Agent Performance Cards (OnePlus High Contrast Style) -->
             <div class="op-performance-stack">
-              
               <div class="op-card op-agent-card highlight-yellow">
                 <div class="agent-left">
-                  <div class="avatar-group">
-                    <span>R</span><span>L</span><span>R</span>
-                  </div>
+                  <div class="avatar-group"><span>R</span><span>L</span><span>R</span></div>
                   <div class="agent-info">
                     <h4>RAJSHEKHAR, LAKSHYA, RAGHAV</h4>
                     <p>Primary Support Team</p>
                   </div>
                 </div>
-                <div class="op-score-badge yellow-glow" id="score-team-1">0</div>
+                <div class="op-score-badge yellow-glow" id="score-team-1">59</div>
               </div>
 
               <div class="op-card op-agent-card highlight-red">
@@ -197,7 +189,7 @@
                     <p>Executive Lead</p>
                   </div>
                 </div>
-                <div class="op-score-badge red-glow" id="score-vikash">0</div>
+                <div class="op-score-badge red-glow" id="score-vikash">30</div>
               </div>
 
               <div class="op-card op-agent-card highlight-red">
@@ -208,13 +200,153 @@
                     <p>Executive Lead</p>
                   </div>
                 </div>
-                <div class="op-score-badge red-glow" id="score-sonu">0</div>
+                <div class="op-score-badge red-glow" id="score-sonu">64</div>
               </div>
-
             </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- View 3: Operations Dashboard (HOURLY, ALL OVER ISSUED & LAST 10 DAYS) -->
+      <div id="operations-dashboard-view">
+        
+        <!-- Header Banner with Date Picker -->
+        <div class="op-card report-header-banner">
+          <div class="banner-content flex-between">
+            <div>
+              <div class="live-pill"><span class="red-pulse-glow"></span> MULTI-VIEW OPERATIONS ANALYTICS</div>
+              <h2 class="op-hero-title">Hourly & Daywise Operations Dashboard</h2>
+              <p class="op-sub-text">Real-time pipeline breakdown, hourwise tracking & 10-day history</p>
+            </div>
+            
+            <div class="date-filter-box">
+              <label for="ops-date-picker"><i data-lucide="calendar"></i> Select Date:</label>
+              <input type="date" id="ops-date-picker" class="oneplus-date-input" value="2026-09-17" onchange="applyOpsDateFilter()">
+              <button class="op-red-btn" onclick="applyOpsDateFilter()" style="width: auto; padding: 8px 16px;">
+                <i data-lucide="filter"></i> Filter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. HOURLY PERFORMANCE DASHBOARD (VIA PIPELINE) -->
+        <div class="op-card">
+          <div class="card-header-line">
+            <h3>Hourly Performance Dashboard - VIA PIPELINE</h3>
+            <span class="badge-black">HOURWISE BREAKDOWN</span>
+          </div>
+          <div class="table-scroll-wrap">
+            <table class="oneplus-table hourly-table">
+              <thead>
+                <tr>
+                  <th>RTO</th>
+                  <th>10:00 AM</th><th>11:00 AM</th><th>12:00 PM</th><th>1:00 PM</th>
+                  <th>2:00 PM</th><th>3:00 PM</th><th>4:00 PM</th><th>5:00 PM</th>
+                  <th>6:00 PM</th><th>7:00 PM</th><th>8:00 PM</th>
+                  <th class="highlight-head">TOTAL</th>
+                  <th class="highlight-head red-head">total issued</th>
+                </tr>
+              </thead>
+              <tbody id="hourly-table-body"></tbody>
+              <tfoot id="hourly-table-foot"></tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2. TWO COLUMN ROW: ALL OVER ISSUED & LAST 10 DAYS -->
+        <div class="two-col-grid">
+          
+          <!-- ALL OVER ISSUED TABLE -->
+          <div class="op-card">
+            <div class="card-header-line">
+              <h3>ALL OVER ISSUED</h3>
+              <span class="badge-black">OFFICE VS EXTRA</span>
+            </div>
+            <table class="oneplus-table">
+              <thead>
+                <tr>
+                  <th>RTO</th>
+                  <th class="text-right">In office time</th>
+                  <th class="text-right">total issued</th>
+                  <th class="text-right">extra</th>
+                </tr>
+              </thead>
+              <tbody id="allover-table-body"></tbody>
+              <tfoot id="allover-table-foot"></tfoot>
+            </table>
           </div>
 
+          <!-- LAST 10 DAYS PERFORMANCE TABLE -->
+          <div class="op-card">
+            <div class="card-header-line">
+              <h3>LAST 10 DAYS PERFORMANCE</h3>
+              <span class="badge-black gold-badge">10 DAYS TOTAL: 1332</span>
+            </div>
+            <table class="oneplus-table">
+              <thead>
+                <tr>
+                  <th>DATE</th>
+                  <th class="text-right">ISSUED COUNT</th>
+                </tr>
+              </thead>
+              <tbody id="last10-table-body"></tbody>
+              <tfoot>
+                <tr>
+                  <td><strong>TOTAL (LAST 10 DAYS)</strong></td>
+                  <td class="text-right"><strong id="last10-grand-total">1332</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        </div>
+
+        <!-- 3. COMMON RTO PERFORMANCE SCORECARD -->
+        <div class="op-card">
+          <div class="card-header-line">
+            <h3>Common RTO Performance</h3>
+            <span class="badge-black">EXECUTIVE LEADERBOARD</span>
+          </div>
+          <div class="common-rto-flex">
+            <div class="common-rto-table-side">
+              <table class="oneplus-table">
+                <thead>
+                  <tr>
+                    <th>STATE</th>
+                    <th class="text-right">Certificate Issued</th>
+                  </tr>
+                </thead>
+                <tbody id="common-rto-body"></tbody>
+                <tfoot>
+                  <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td class="text-right"><strong>153</strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div class="common-rto-leaderboard-side">
+              <div class="hero-total-box">
+                <span>TOTAL ISSUED</span>
+                <h2>153</h2>
+              </div>
+              <div class="agent-scores-container">
+                <div class="agent-tile yellow-tile">
+                  <div class="names">RAJSHEKHAR, RAGHAV, LAKSHYA</div>
+                  <div class="score">59</div>
+                </div>
+                <div class="agent-tile green-tile">
+                  <div class="names">VIKASH</div>
+                  <div class="score">30</div>
+                </div>
+                <div class="agent-tile peach-tile">
+                  <div class="names">SONU</div>
+                  <div class="score">64</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -227,19 +359,36 @@
     function togglePortalView(val) {
       const trainingView = document.getElementById('training-portal-view');
       const reportView = document.getElementById('report-dashboard-view');
+      const opsView = document.getElementById('operations-dashboard-view');
+
       const navSop = document.getElementById('nav-sop');
       const navReport = document.getElementById('nav-report');
+      const navOps = document.getElementById('nav-ops');
+
+      const sideSop = document.getElementById('side-sop');
+      const sideReport = document.getElementById('side-report');
+      const sideOps = document.getElementById('side-ops');
+
+      [navSop, navReport, navOps, sideSop, sideReport, sideOps].forEach(el => el && el.classList.remove('active'));
 
       if (val === 'today-progress-report') {
         trainingView.style.display = 'none';
         reportView.style.display = 'block';
-        navSop.classList.remove('active');
+        opsView.style.display = 'none';
         navReport.classList.add('active');
+        sideReport.classList.add('active');
+      } else if (val === 'operations-dashboard') {
+        trainingView.style.display = 'none';
+        reportView.style.display = 'none';
+        opsView.style.display = 'block';
+        navOps.classList.add('active');
+        sideOps.classList.add('active');
       } else {
         trainingView.style.display = 'block';
         reportView.style.display = 'none';
+        opsView.style.display = 'none';
         navSop.classList.add('active');
-        navReport.classList.remove('active');
+        sideSop.classList.add('active');
       }
       if (window.lucide) lucide.createIcons();
     }
