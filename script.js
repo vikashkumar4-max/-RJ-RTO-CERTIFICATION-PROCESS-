@@ -1,8 +1,8 @@
 // ==========================================
 // 1. CONFIGURATION (PASTE SHEET CSV LINK HERE)
 // ==========================================
-// CSV URL Google Sheet 'Publish to Web' option se generate karein
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pubhtml?gid=780031891&single=true";
+// Google Sheet ko 'File -> Share -> Publish to Web -> Select CSV format' se link copy karein
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pub?gid=780031891&single=true&output=csv";
 
 // ==========================================
 // 2. RJ RTO PROCESS DATA (10 STEPS)
@@ -130,7 +130,7 @@ const stepsData = [
   }
 ];
 
-// Fallback Default Data for Modern Common RTO Report
+// Fallback Default Data for Modern Common RTO Report (Exact Matching Image Layout)
 const defaultReportData = {
   date: "9/17/2026",
   states: [
@@ -220,13 +220,13 @@ function drawMaleCharacter(mouthOpen) {
   ctx.arc(110, 110, 50, 0, Math.PI * 2);
   ctx.fill();
 
-  // Male Short Professional Hair
+  // Male Short Hair
   ctx.fillStyle = "#2c1d11";
   ctx.beginPath();
   ctx.arc(110, 95, 52, Math.PI * 0.85, Math.PI * 2.15);
   ctx.fill();
 
-  // Glasses Frame (Modern Executive Look)
+  // Glasses Frame
   ctx.strokeStyle = "#000";
   ctx.lineWidth = 3;
   ctx.strokeRect(80, 100, 24, 16);
@@ -243,7 +243,7 @@ function drawMaleCharacter(mouthOpen) {
   ctx.arc(128, 108, 3, 0, Math.PI * 2);
   ctx.fill();
 
-  // Animated Mouth Speaking Logic
+  // Animated Mouth
   ctx.fillStyle = "#900";
   ctx.beginPath();
   let mouthHeight = 2 + mouthOpen * 12;
@@ -289,7 +289,6 @@ function speakHindiInstruction(text) {
 
   if (voices.length === 0) voices = synth.getVoices();
 
-  // Filter Specifically for Hindi Male Voice
   const hindiMaleVoice = voices.find(v => 
     (v.lang === 'hi-IN' || v.lang.startsWith('hi')) && 
     (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('madhav') || v.name.toLowerCase().includes('hemant') || !v.name.toLowerCase().includes('female'))
@@ -300,7 +299,7 @@ function speakHindiInstruction(text) {
   }
 
   utterance.rate = 0.95;
-  utterance.pitch = 0.9; // Lower pitch for deep male executive tone
+  utterance.pitch = 0.9;
 
   utterance.onstart = () => startTalkingAnimation();
   utterance.onend = () => stopTalkingAnimation();
@@ -403,35 +402,55 @@ function setupEventListeners() {
 }
 
 // ==========================================
-// 7. GOOGLE SHEET LIVE REPORT FETCHING
+// 7. GOOGLE SHEET LIVE REPORT FETCHING & STRICT SANITIZATION
 // ==========================================
 async function fetchLiveDataFromSheet() {
   try {
+    if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("PASTE_YOUR_GOOGLE_SHEET")) {
+      throw new Error("Invalid or unconfigured Sheet URL");
+    }
+
     const response = await fetch(GOOGLE_SHEET_CSV_URL);
-    if (!response.ok) throw new Error("CSV URL not found");
+    if (!response.ok) throw new Error("CSV Fetch failed");
     
-    const csvText = await response.text();
-    const rows = csvText.split('\n').map(row => row.split(','));
+    const rawText = await response.text();
+
+    // Check if returned response is actually HTML/JS code instead of pure CSV
+    if (rawText.trim().startsWith("<") || rawText.includes("function") || rawText.includes("typeof")) {
+      throw new Error("Returned response is HTML/JavaScript code, not a CSV stream.");
+    }
+
+    const rows = rawText.split('\n').map(row => row.split(','));
 
     if (rows.length > 1) {
-      const states = [];
-      for (let i = 1; i <= 11; i++) {
-        if (rows[i]) {
-          const stName = rows[i][0]?.trim() || "";
-          const count = parseInt(rows[i][1]?.trim()) || 0;
-          if(stName) states.push({ name: stName, count: count });
+      const parsedStates = [];
+      for (let i = 1; i < rows.length; i++) {
+        if (rows[i] && rows[i].length >= 2) {
+          const stName = rows[i][0]?.replace(/"/g, '').trim() || "";
+          const count = parseInt(rows[i][1]?.replace(/"/g, '').trim()) || 0;
+
+          // Reject any row containing code strings
+          if (stName && !stName.includes("function") && !stName.includes("{") && !stName.includes("var ")) {
+            parsedStates.push({ name: stName, count: count });
+          }
         }
       }
-      renderReportTable({
-        date: rows[1][4]?.trim() || "9/17/2026",
-        states: states.length ? states : defaultReportData.states,
-        team1Score: rows[1][2]?.trim() || 76,
-        vikashScore: rows[2][2]?.trim() || 30,
-        sonuScore: rows[3][2]?.trim() || 61
-      });
+
+      if (parsedStates.length > 0) {
+        renderReportTable({
+          date: rows[1][4]?.replace(/"/g, '').trim() || "9/17/2026",
+          states: parsedStates,
+          team1Score: parseInt(rows[1][2]) || 76,
+          vikashScore: parseInt(rows[2][2]) || 30,
+          sonuScore: parseInt(rows[3][2]) || 61
+        });
+        return;
+      }
     }
+
+    throw new Error("CSV parsing returned empty valid rows");
   } catch (error) {
-    console.log("Using Default Fallback Report Data", error);
+    console.warn("Sheet fetch blocked or unconfigured, rendering fallback data cleanly:", error.message);
     renderReportTable(defaultReportData);
   }
 }
