@@ -3,51 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WheelsEye AIS | Executive Portal</title>
+  <title>WheelsEye AIS | OnePlus Luxury Edition</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top Glass Banner -->
-  <div class="glass-top-bar">
+  <!-- Top Strip -->
+  <div class="op-top-strip">
     <div class="portal-container flex-between">
-      <div class="brand-pill">
-        <span class="live-dot"></span>
-        <span>MRATYUNJAY BRAHMAVANSHI | INTERNAL PORTAL</span>
+      <div class="brand-badge">
+        <span class="red-square"></span>
+        <span>ONEPLUS EXECUTIVE AIS PORTAL</span>
       </div>
-      <div class="support-link">
-        <i data-lucide="headphone-off"></i> Helpline: 9896873022
+      <div class="top-support">
+        <i data-lucide="shield-alert"></i> NEVER SETTLE • LIVE DATA ENGINE ACTIVE
       </div>
     </div>
   </div>
 
-  <!-- Header Section -->
+  <!-- Header -->
   <header class="app-header">
     <div class="portal-container flex-between">
-      <div class="app-brand">
-        <div class="brand-icon">
-          <i data-lucide="shield-check"></i>
+      <div class="brand-logo-section">
+        <div class="oneplus-icon-box">
+          <span>1+</span>
         </div>
-        <div class="brand-text">
-          <h1>WheelsEye AIS</h1>
-          <p>RTO Certification & Live Analytics</p>
+        <div class="brand-titles">
+          <h1>WheelsEye <span class="accent-red">AIS</span></h1>
+          <p>Real-Time RTO Intelligence Dashboard</p>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
-      <nav class="segmented-control">
-        <button id="nav-sop" class="segment-btn active" onclick="togglePortalView('rto-certification')">
+      <!-- Capsule Nav -->
+      <nav class="capsule-nav">
+        <button id="nav-sop" class="capsule-btn" onclick="togglePortalView('rto-certification')">
           <i data-lucide="book-open"></i> SOP Training
         </button>
-        <button id="nav-report" class="segment-btn" onclick="togglePortalView('today-progress-report')">
-          <i data-lucide="bar-chart-2"></i> Progress Report
+        <button id="nav-report" class="capsule-btn active" onclick="togglePortalView('today-progress-report')">
+          <i data-lucide="activity"></i> Common RTO Report
         </button>
       </nav>
 
-      <div class="header-actions">
-        <button id="toggle-audio-btn" class="glass-btn active">
+      <div class="header-right-actions">
+        <button id="toggle-audio-btn" class="oneplus-pill-btn active">
           <i data-lucide="volume-2"></i>
           <span>Voice Guide On</span>
         </button>
@@ -55,171 +55,160 @@
     </div>
   </header>
 
-  <!-- Main Grid -->
   <main class="portal-container main-grid">
 
-    <!-- Left Column: Audio Trainer Character -->
+    <!-- Sidebar -->
     <aside class="sidebar-column">
-      
-      <div class="glass-card character-card">
-        <div class="card-tag"><i data-lucide="sparkles"></i> AI Trainer</div>
-        
-        <!-- Animated 2D/Canvas Male Character -->
+      <div class="op-card character-card">
+        <div class="op-tag"><i data-lucide="sparkles"></i> AI Voice Guide</div>
         <div class="character-wrapper">
           <canvas id="maleAvatarCanvas" width="220" height="220"></canvas>
           <div class="audio-wave-bar" id="speaker-waves">
             <span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
-
         <div class="trainer-status">
           <span class="status-indicator" id="status-dot"></span>
           <span id="status-text">Ready to Guide</span>
         </div>
-
-        <button id="replay-voice-btn" class="primary-pill-btn">
-          <i data-lucide="play"></i> Replay Voice Instructions
+        <button id="replay-voice-btn" class="op-red-btn">
+          <i data-lucide="play"></i> Replay Instructions
         </button>
-
-        <p id="dialogue-text" style="display:none;"></p>
       </div>
 
-      <!-- Quick Topics -->
-      <div class="glass-card menu-card">
-        <div class="card-title"><i data-lucide="layers"></i> Training Modules</div>
-        <ul class="clean-menu">
-          <li class="menu-item active" onclick="togglePortalView('rto-certification')">
+      <div class="op-card menu-card">
+        <div class="card-title"><i data-lucide="layers"></i> Views</div>
+        <ul class="op-menu-list">
+          <li class="op-menu-item" onclick="togglePortalView('rto-certification')">
             <i data-lucide="check-circle-2"></i> RJ RTO Device SOP
           </li>
-          <li class="menu-item" onclick="togglePortalView('today-progress-report')">
-            <i data-lucide="trending-up"></i> Today's Common RTO Report
+          <li class="op-menu-item active" onclick="togglePortalView('today-progress-report')">
+            <i data-lucide="trending-up"></i> Live Common RTO Report
           </li>
         </ul>
       </div>
-
     </aside>
 
-    <!-- Right Column: Views -->
+    <!-- Main Content -->
     <section class="content-column">
 
-      <!-- VIEW 1: SOP TRAINING -->
-      <div id="training-portal-view">
-        
-        <div class="glass-card header-progress-card flex-between">
+      <!-- View 1: SOP Training -->
+      <div id="training-portal-view" style="display: none;">
+        <div class="op-card header-progress-card flex-between">
           <div>
-            <span class="section-sub">MODULE 01</span>
-            <h2 class="section-title">RJ RTO Device Certification & Verification SOP</h2>
+            <span class="section-sub">TRAINING MODULE 01</span>
+            <h2 class="section-title">RJ RTO Device Certification SOP</h2>
           </div>
-          <div class="step-badge">
-            Step <span id="current-step-num">1</span>/<span id="total-steps-num">10</span>
-          </div>
+          <div class="step-badge">Step <span id="current-step-num">1</span>/<span id="total-steps-num">10</span></div>
         </div>
-
-        <div class="glass-card progress-track-card">
+        <div class="op-card progress-track-card">
           <div class="track-info flex-between">
-            <span>Completion Rate</span>
-            <span id="progress-percent" class="gradient-text">10%</span>
+            <span>Progress</span>
+            <span id="progress-percent" class="red-text-bold">10%</span>
           </div>
-          <div class="track-bg">
-            <div class="track-fill" id="progress-bar"></div>
-          </div>
+          <div class="track-bg"><div class="track-fill" id="progress-bar"></div></div>
         </div>
-
-        <div id="step-card-display">
-          <!-- Dynamic Step Content -->
-        </div>
-
-        <div class="glass-card nav-footer flex-between">
-          <button id="prev-btn" class="secondary-btn" disabled>
-            <i data-lucide="chevron-left"></i> Previous
-          </button>
-
+        <div id="step-card-display"></div>
+        <div class="op-card nav-footer flex-between">
+          <button id="prev-btn" class="op-secondary-btn" disabled><i data-lucide="chevron-left"></i> Previous</button>
           <div class="dots-timeline" id="step-dots-timeline"></div>
-
-          <button id="next-btn" class="primary-btn">
-            Next Step <i data-lucide="chevron-right"></i>
-          </button>
+          <button id="next-btn" class="op-red-btn flex-btn">Next Step <i data-lucide="chevron-right"></i></button>
         </div>
-
       </div>
 
-      <!-- VIEW 2: REDESIGNED COMMON RTO REPORT -->
-      <div id="report-dashboard-view" style="display: none;">
+      <!-- View 2: High-End OnePlus Report Card Layout -->
+      <div id="report-dashboard-view">
         
-        <div class="glass-card report-header flex-between">
-          <div>
-            <div class="live-status-pill"><span class="pulse"></span> LIVE METRICS</div>
-            <h2 class="report-main-title">Common RTO Live Overview</h2>
-          </div>
-          <div class="report-actions flex-center">
-            <span id="report-date-display" class="date-chip">9/17/2026</span>
-            <button class="icon-btn" onclick="fetchLiveDataFromSheet()" title="Refresh Data">
-              <i data-lucide="rotate-cw"></i>
-            </button>
+        <div class="op-card report-header-banner">
+          <div class="banner-overlay"></div>
+          <div class="banner-content flex-between">
+            <div>
+              <div class="live-pill"><span class="red-pulse-glow"></span> INSTANT LIVE SYNC</div>
+              <h2 class="op-hero-title">Common RTO Live Overview</h2>
+              <p class="op-sub-text">Real-time state wise metrics & executive leaderboard</p>
+            </div>
+            <div class="flex-center">
+              <span id="report-date-display" class="op-date-chip">9/18/2026</span>
+              <button class="op-refresh-trigger" onclick="fetchLiveDataFromSheet()" title="Instant Sync">
+                <i data-lucide="rotate-cw" id="sync-icon"></i> Sync Now
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Modern Common RTO Card Structure -->
-        <div class="modern-report-container">
+        <!-- OnePlus Grid Showcase -->
+        <div class="op-dashboard-grid">
           
-          <!-- State Table Section -->
-          <div class="glass-card modern-table-card">
-            <div class="card-heading">State Wise Certificates</div>
-            <table class="apple-table">
-              <thead>
-                <tr>
-                  <th>STATE</th>
-                  <th class="text-right">Certificate Issued</th>
-                </tr>
-              </thead>
-              <tbody id="state-rows-body">
-                <!-- Dynamic Rows -->
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td>TOTAL</td>
-                  <td class="text-right" id="grand-total-val">166</td>
-                </tr>
-              </tfoot>
-            </table>
+          <!-- Left Stack: State Table -->
+          <div class="op-card op-table-card">
+            <div class="card-header-line">
+              <h3>State Wise Certificates</h3>
+              <span class="badge-black">AUTO-UPDATED</span>
+            </div>
+            <div class="table-scroll-wrap">
+              <table class="oneplus-table">
+                <thead>
+                  <tr>
+                    <th>STATE CODE</th>
+                    <th class="text-right">ISSUED COUNT</th>
+                  </tr>
+                </thead>
+                <tbody id="state-rows-body">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <!-- Total Count & Agent Cards -->
-          <div class="stats-side-stack">
+          <!-- Right Stack: Grand Total Hero Block & Leaderboard -->
+          <div class="op-right-stack">
             
-            <!-- Grand Total Feature Card -->
-            <div class="glass-card grand-total-feature-card">
-              <span class="stat-label">Grand Total Issued</span>
-              <div class="huge-number gradient-text" id="big-grand-total">166</div>
+            <!-- Hero Dark Grand Total Card -->
+            <div class="op-card op-hero-total-card">
+              <div class="card-bg-watermark">1+</div>
+              <span class="op-label">GRAND TOTAL ISSUED</span>
+              <div class="op-giant-stat" id="big-grand-total">0</div>
+              <div class="op-card-footer">
+                <i data-lucide="zap"></i> Updated Live via Apps Script Engine
+              </div>
             </div>
 
-            <!-- Agent Performance Stack -->
-            <div class="agent-grid">
+            <!-- Agent Performance Cards (OnePlus High Contrast Style) -->
+            <div class="op-performance-stack">
               
-              <div class="glass-card agent-card highlight-card">
-                <div class="agent-meta">
-                  <div class="team-avatars">
+              <div class="op-card op-agent-card highlight-yellow">
+                <div class="agent-left">
+                  <div class="avatar-group">
                     <span>R</span><span>L</span><span>R</span>
                   </div>
-                  <div class="team-names">RAJSHEKHAR, LAKSHYA, RAGHAV</div>
+                  <div class="agent-info">
+                    <h4>RAJSHEKHAR, LAKSHYA, RAGHAV</h4>
+                    <p>Primary Support Team</p>
+                  </div>
                 </div>
-                <div class="agent-count score-yellow" id="score-team-1">76</div>
+                <div class="op-score-badge yellow-glow" id="score-team-1">0</div>
               </div>
 
-              <div class="glass-card agent-card">
-                <div class="agent-meta">
-                  <div class="single-avatar">V</div>
-                  <div class="single-name">VIKASH</div>
+              <div class="op-card op-agent-card highlight-red">
+                <div class="agent-left">
+                  <div class="single-avatar red-avatar">V</div>
+                  <div class="agent-info">
+                    <h4>VIKASH</h4>
+                    <p>Executive Lead</p>
+                  </div>
                 </div>
-                <div class="agent-count score-peach" id="score-vikash">30</div>
+                <div class="op-score-badge red-glow" id="score-vikash">0</div>
               </div>
 
-              <div class="glass-card agent-card">
-                <div class="agent-meta">
-                  <div class="single-avatar">S</div>
-                  <div class="single-name">SONU</div>
+              <div class="op-card op-agent-card highlight-red">
+                <div class="agent-left">
+                  <div class="single-avatar red-avatar">S</div>
+                  <div class="agent-info">
+                    <h4>SONU</h4>
+                    <p>Executive Lead</p>
+                  </div>
                 </div>
-                <div class="agent-count score-peach" id="score-sonu">61</div>
+                <div class="op-score-badge red-glow" id="score-sonu">0</div>
               </div>
 
             </div>
