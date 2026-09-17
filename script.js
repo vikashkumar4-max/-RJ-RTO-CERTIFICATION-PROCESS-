@@ -1,51 +1,50 @@
 // ==========================================
-// 1. CONFIGURATION (PASTE SHEET CSV LINK HERE)
+// 1. APPS SCRIPT API URL (Paste your link here)
 // ==========================================
-// Google Sheet ko 'File -> Share -> Publish to Web -> Select CSV format' se link copy karein
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pub?gid=780031891&single=true&output=csv";
+const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbwSIKcE5PYWtmdrVpgKc_-3D19UQKLmc185vlKOl_XkfKUXotVJpws7ARjYycVg7pLqLA/exec";
 
 // ==========================================
-// 2. RJ RTO PROCESS DATA (10 STEPS)
+// 2. COMPLETE RTO CERTIFICATION SOP TRAINING DATA
 // ==========================================
 const stepsData = [
   {
     step: 1,
     title: "Pan India Sheet Check Karein",
-    category: "Verification Phase",
+    category: "Verification",
     system: "Pan India Master Database",
     instructions: [
-      "Sabse pehle Pan India Response Sheet open karein aur Rajasthan RTO ke naye installation requests verify karein.",
-      "Check karein ki Rajasthan (RJ) RTO ke liye request valid aur pending status me hai ya nahi.",
-      "Duplication se bachne ke liye vehicle/customer entry ID double-check karein."
+      "Sabse pehle Pan India Response Sheet open karein.",
+      "Rajasthan RTO ke liye aayi hui pending requests ko verify karein.",
+      "Customer details aur Vehicle Chassis number ki accuracy check karein."
     ],
-    proTip: "Galat sheet ya category me entry aage ka process block kar sakti hai.",
-    hindiAudio: "सबसे पहले पैन इंडिया रिस्पॉन्स शीट ओपन करके राजस्थान आरटीओ के नए इंस्टॉलेशन चेक करें। इसके बाद डिवाइस के प्रकार के अनुसार सही टॉप-अप शीट में एंट्री दर्ज करें।"
+    proTip: "Duplicate entries se bachne ke liye hamesha Chassis Number se Filter lagayein.",
+    hindiAudio: "सबसे पहले पैन इंडिया रिस्पॉन्स शीट ओपन करें और राजस्थान आरटीओ की पेंडिंग रिक्वेस्ट वेरीफाई करें।"
   },
   {
     step: 2,
     title: "Specific Sheet Me Entry Karein",
-    category: "Data Entry Phase",
+    category: "Data Entry",
     system: "RJ State Data Sheet",
     instructions: [
-      "Master sheet se detail verify hone ke baad, use RJ Specific Work Sheet me enter karein.",
-      "Date, Vehicle Type, Owner Name, aur Regional RTO Code dhyaan se fill karein.",
-      "Data formatting standard guidelines ke anusaar hi rakhein."
+      "Master sheet se details verify karne ke baad use RJ RTO Specific Sheet me transfer karein.",
+      "Ensure karein ki saare fields jaise Date, Dealer Name, aur Mobile Number sahi hain.",
+      "Status column ko 'In Progress' par set karein."
     ],
-    proTip: "Galat package wale vehicle par kaam na karein, ise hold par daalein.",
-    hindiAudio: "वेरीफाइड डिटेल्स को राजस्थान स्पेसिफिक शीट में एंटर करें। डेट और आरटीओ कोड सही से भरना अनिवार्य है।"
+    proTip: "Data formatting ko hamesha Standard Text Format par rakhein.",
+    hindiAudio: "मास्टर शीट से डिटेल वेरीफाई करने के बाद, जानकारी को राजस्थान आरटीओ स्पेसिफिक शीट में दर्ज करें।"
   },
   {
     step: 3,
     title: "TopUp According To Requirement",
-    category: "Wallet Phase",
+    category: "Wallet",
     system: "Vahan Portal Wallet",
     instructions: [
-      "Process fees ke anusaar wallet balance check karein.",
-      "Requirement ke hisab se exact amount ka TopUp karein.",
-      "TopUp Transaction ID ko record sheet me save karein."
+      "Pending certificates ke count ke hisaab se Vahan Portal Wallet check karein.",
+      "Requirement ke according exact TopUp amount process karein.",
+      "Payment confirmation receipt record me save karein."
     ],
-    proTip: "TopUp hamesha official gateway se hi karein.",
-    hindiAudio: "आईसीसीआईडी के ज़रिये ऑफिसियल पोर्टल पर जाकर टॉप-अप बैलेंस चेक करें। पैकेज के अनुसार टॉप-अप पूरा करें।"
+    proTip: "Transaction failure se bachne ke liye hamesha official payment gateway hi use karein.",
+    hindiAudio: "आवश्यकता के अनुसार वाहन पोर्टल वॉलेट में सही अमाउंट का टॉप-अप पूरा करें।"
   },
   {
     step: 4,
@@ -53,11 +52,12 @@ const stepsData = [
     category: "Integration",
     system: "Govt Vahan Portal",
     instructions: [
-      "Official Vahan Portal par login karein.",
-      "Vehicle Class aur Chassis Number enter karke device tagging start karein."
+      "Vahan Portal par login karke Tagging section me jaayein.",
+      "Vehicle Class aur Chassis Number enter karke Device Tagging start karein.",
+      "System alert ya error message ko carefully check karein."
     ],
-    proTip: "Vahan portal timeout se bachne ke liye details pehle copy karein.",
-    hindiAudio: "वाहन पोर्टल पर जाकर व्हीकल नंबर की टैगिंग करें। यदि कोई इश्यू दिखे, तो उसे टीम के साथ शेयर करें।"
+    proTip: "Tagging fail hone par Chassis number ki spelling re-check karein.",
+    hindiAudio: "वाहन पोर्टल पर लॉगिन करें और वाहन क्लास व चेसिस नंबर डालकर टैगिंग पूर्ण करें।"
   },
   {
     step: 5,
@@ -65,35 +65,38 @@ const stepsData = [
     category: "Whitelisting",
     system: "RJ NIC Portal",
     instructions: [
-      "RJ NIC portal me login karke 15-digit IMEI number enter karein.",
-      "Whitelisting status Active check karein."
+      "RJ NIC Portal open karein aur Whitelisting module me enter karein.",
+      "15-digit IMEI number carefully fill karke submit karein.",
+      "Status 'Active / Whitelisted' show hone ka wait karein."
     ],
-    proTip: "IMEI number me 1 digit ki galti se approval reject ho sakta hai.",
-    hindiAudio: "राजस्थान एनआईसी पोर्टल पर जाकर डिवाइस का आईएमईआई नंबर व्हाइटलिस्ट करें।"
+    proTip: "Ek sath multiple IMEIs upload karte waqt CSV format correct hona chahiye.",
+    hindiAudio: "राजस्थान एनआईसी पोर्टल पर पंद्रह अंकों का आईएमईआई नंबर दर्ज करके व्हाइटलिस्ट करें।"
   },
   {
     step: 6,
     title: "Clear Check By CMD",
-    category: "Quality Audit",
+    category: "Audit",
     system: "CMD Portal",
     instructions: [
-      "CMD System par data synchronization run karein.",
-      "Backend quality audit checks perform karein."
+      "CMD (Central Monitoring Dashboard) portal me login karein.",
+      "Device data packet transfer sync status verify karein.",
+      "Agar koi compliance issue hai toh use clear mark karein."
     ],
-    proTip: "Clear Status ka proof save rakhein.",
-    hindiAudio: "एक्टिवेशन प्रोसेस के लिए सभी सरकारी दिशानिर्देशों का पालन करें और सिस्टम चेक्स क्लियर करें।"
+    proTip: "CMD Sync status green hone par hi aage badhein.",
+    hindiAudio: "सीएमडी पोर्टल पर जाकर डेटा पैकेट सिंक और सभी सिक्योरिटी चेक्स क्लियर करें।"
   },
   {
     step: 7,
     title: "Activation With Pan India Details",
-    category: "Final Activation",
+    category: "Activation",
     system: "Activation Portal",
     instructions: [
-      "Pan India Response Form se verified credentials collect karein.",
-      "Activation portal par submit karein."
+      "Activation Portal par customer ki Pan India verified details enter karein.",
+      "Device Serial Number aur SIM details match karein.",
+      "Final activation request submit karein."
     ],
-    proTip: "Response form ki latest entry hi use karein.",
-    hindiAudio: "एक्टिवेशन चेक्स पूरे होने के बाद व्हीकल ओनर की सभी जानकारी ध्यानपूर्वक भरें।"
+    proTip: "Double check karein ki SIM card active state me ho.",
+    hindiAudio: "एक्टिवेशन पोर्टल में व्हीकल ओनर और डिवाइस की पूरी जानकारी दर्ज करें।"
   },
   {
     step: 8,
@@ -101,65 +104,61 @@ const stepsData = [
     category: "OTP Verification",
     system: "SMS Gateway",
     instructions: [
-      "Customer ke registered mobile number par OTP trigger karein."
+      "Customer ke registered mobile number par OTP trigger karein.",
+      "Customer se Telephonic/SMS call ke through OTP confirm karein.",
+      "System me OTP 180 seconds ke andar enter karein."
     ],
-    proTip: "OTP trigger karte hi time note karein.",
-    hindiAudio: "फॉर्म सबमिट करने के बाद ओनर के मोबाइल पर गया हुआ ओटीपी प्राप्त करके दर्ज करें।"
+    proTip: "OTP expired hone par 'Resend OTP' click karein.",
+    hindiAudio: "रजिस्टर्ड मोबाइल नंबर पर ओटीपी भेजें और ग्राहक से कन्फर्म करके दर्ज करें।"
   },
   {
     step: 9,
     title: "Fill OTP & Share Certificate",
-    category: "Certificate Generation",
-    system: "Group Communication",
+    category: "Certificate",
+    system: "Group Comm / Portal",
     instructions: [
-      "OTP fill karke certificate download karein aur official group me share karein."
+      "Correct OTP fill karke 'Generate Fitment Certificate' button par click karein.",
+      "PDF Download karke official format verify karein.",
+      "Certificate ko respective WhatsApp Group/Email par share karein."
     ],
-    proTip: "Vehicle Number aur Name zaroor mention karein.",
-    hindiAudio: "सर्टिफिकेट और वाहन पोर्टल से फिटमेंट लेटर डाउनलोड करके ऑफिसियल ग्रुप पर शेयर करें।"
+    proTip: "Certificate PDF me RTO Stamp aur QR Code clear visible hona chahiye.",
+    hindiAudio: "ओटीपी दर्ज करके सर्टिफिकेट जनरेट करें, पीडीएफ डाउनलोड करें और ग्रुप में शेयर करें।"
   },
   {
     step: 10,
     title: "Mark Certificate Issued On Sheet",
-    category: "Process Closure",
-    system: "Master Tracking Sheet",
+    category: "Closure",
+    system: "Master Sheet & RJ Sheet",
     instructions: [
-      "Data Sheet me 'Certificate Status' ko 'ISSUED' mark karein."
+      "Dono sheets (Pan India & RJ State Sheet) par status 'ISSUED' mark karein.",
+      "Certificate Generation Timestamp aur Issued ID update karein.",
+      "SOP Completion log close karein."
     ],
-    proTip: "Sheet close karne se pehle verify karein.",
-    hindiAudio: "बधाई हो, राजस्थान आरटीओ डिवाइस सर्टिफिकेशन का प्रोसेस सफलता पूर्वक पूरा हुआ!"
+    proTip: "Time-stamp update karna daily audit performance ke liye zaroori hai.",
+    hindiAudio: "मास्टर शीट और राजस्थान शीट दोनों जगह स्टेटस 'ISSUED' मार्क करें। प्रक्रिया पूर्ण हुई।"
   }
 ];
 
-// Fallback Default Data for Modern Common RTO Report (Exact Matching Image Layout)
-const defaultReportData = {
-  date: "9/17/2026",
+const fallbackReportData = {
+  date: "9/18/2026",
   states: [
     { name: "HR-RTO", count: 76 },
     { name: "PB-RTO", count: 20 },
     { name: "GJ-RTO", count: 43 },
     { name: "DD-RTO", count: 2 },
-    { name: "AS-RTO", count: 6 },
-    { name: "AP-RTO", count: 3 },
-    { name: "AR-RTO", count: 0 },
-    { name: "NL-RTO", count: 9 },
-    { name: "JK-RTO", count: 7 },
-    { name: "JH-RTO", count: 0 },
-    { name: "TS-RTO", count: 0 }
+    { name: "AS-RTO", count: 6 }
   ],
   team1Score: 76,
   vikashScore: 30,
   sonuScore: 61
 };
 
-// ==========================================
-// 3. GLOBAL VARIABLES & INITIALIZATION
-// ==========================================
 let currentStep = 0;
 let isAudioOn = true;
 let synth = window.speechSynthesis;
-let voices = [];
-let isTalking = false;
+let canvas, ctx;
 
+// Initialization
 document.addEventListener('DOMContentLoaded', () => {
   initMaleCharacterCanvas();
   renderStep(currentStep);
@@ -169,49 +168,107 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
 });
 
-// Load Male Voice Priority
-function loadVoices() {
-  voices = synth.getVoices();
-}
-loadVoices();
-if (speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = loadVoices;
+// INSTANT LIVE DATA FETCH FROM APPS SCRIPT
+async function fetchLiveDataFromSheet() {
+  const syncIcon = document.getElementById('sync-icon');
+  if (syncIcon) syncIcon.classList.add('spin-anim');
+
+  try {
+    if (!APPS_SCRIPT_API_URL || APPS_SCRIPT_API_URL.includes("PASTE_YOUR_APPS_SCRIPT")) {
+      throw new Error("Apps Script URL Unconfigured");
+    }
+
+    const response = await fetch(APPS_SCRIPT_API_URL);
+    if (!response.ok) throw new Error("API Fetch Error");
+
+    const jsonRows = await response.json();
+
+    if (jsonRows && jsonRows.length > 1) {
+      const parsedStates = [];
+      for (let i = 1; i < jsonRows.length; i++) {
+        const row = jsonRows[i];
+        if (row && row[0]) {
+          const stName = String(row[0]).trim();
+          const count = parseInt(row[1]) || 0;
+          if (stName) parsedStates.push({ name: stName, count: count });
+        }
+      }
+
+      renderReportTable({
+        date: String(jsonRows[1][4] || "9/18/2026"),
+        states: parsedStates,
+        team1Score: parseInt(jsonRows[1][2]) || 0,
+        vikashScore: parseInt(jsonRows[2][2]) || 0,
+        sonuScore: parseInt(jsonRows[3][2]) || 0
+      });
+      return;
+    }
+    throw new Error("Invalid Format");
+  } catch (err) {
+    console.warn("Using local fallback data:", err.message);
+    renderReportTable(fallbackReportData);
+  } finally {
+    if (syncIcon) syncIcon.classList.remove('spin-anim');
+  }
 }
 
-// ==========================================
-// 4. ANIMATED MALE CHARACTER (CANVAS ENGINE)
-// ==========================================
-let canvas, ctx, mouthOpenRatio = 0;
+function renderReportTable(data) {
+  const tbody = document.getElementById('state-rows-body');
+  if (!tbody) return;
 
+  tbody.innerHTML = '';
+  let grandTotal = 0;
+
+  data.states.forEach(st => {
+    grandTotal += Number(st.count);
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${st.name}</strong></td>
+        <td class="text-right">${st.count}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('report-date-display').innerText = data.date;
+  document.getElementById('big-grand-total').innerText = grandTotal;
+  document.getElementById('score-team-1').innerText = data.team1Score;
+  document.getElementById('score-vikash').innerText = data.vikashScore;
+  document.getElementById('score-sonu').innerText = data.sonuScore;
+}
+
+// Canvas Male Avatar Renderer
 function initMaleCharacterCanvas() {
   canvas = document.getElementById('maleAvatarCanvas');
-  if(!canvas) return;
+  if (!canvas) return;
   ctx = canvas.getContext('2d');
   drawMaleCharacter(0);
 }
 
 function drawMaleCharacter(mouthOpen) {
-  if(!ctx) return;
+  if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  
   // Background Circle
-  ctx.fillStyle = "#Eef2f5";
+  ctx.fillStyle = "#EEF0F3";
   ctx.beginPath();
   ctx.arc(110, 110, 100, 0, Math.PI * 2);
   ctx.fill();
 
-  // Shoulders / Corporate Suit
-  ctx.fillStyle = "#1d1d1f";
+  // Suit Body
+  ctx.fillStyle = "#0D0D0D";
   ctx.beginPath();
   ctx.ellipse(110, 200, 75, 40, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Shirt Collar
-  ctx.fillStyle = "#ffffff";
+  // Shirt Collar & Red Tie
+  ctx.fillStyle = "#FFFFFF";
   ctx.beginPath();
-  ctx.moveTo(90, 160);
-  ctx.lineTo(110, 185);
-  ctx.lineTo(130, 160);
+  ctx.moveTo(90, 160); ctx.lineTo(110, 185); ctx.lineTo(130, 160);
+  ctx.fill();
+
+  ctx.fillStyle = "#EB0029";
+  ctx.beginPath();
+  ctx.moveTo(106, 160); ctx.lineTo(114, 160); ctx.lineTo(112, 195); ctx.lineTo(108, 195);
   ctx.fill();
 
   // Face
@@ -220,100 +277,36 @@ function drawMaleCharacter(mouthOpen) {
   ctx.arc(110, 110, 50, 0, Math.PI * 2);
   ctx.fill();
 
-  // Male Short Hair
-  ctx.fillStyle = "#2c1d11";
+  // Hair Style
+  ctx.fillStyle = "#0D0D0D";
   ctx.beginPath();
   ctx.arc(110, 95, 52, Math.PI * 0.85, Math.PI * 2.15);
   ctx.fill();
 
-  // Glasses Frame
-  ctx.strokeStyle = "#000";
-  ctx.lineWidth = 3;
+  // Glasses (OnePlus Red Accent Frame)
+  ctx.strokeStyle = "#EB0029";
+  ctx.lineWidth = 2.5;
   ctx.strokeRect(80, 100, 24, 16);
   ctx.strokeRect(116, 100, 24, 16);
-  ctx.beginPath();
-  ctx.moveTo(104, 108);
-  ctx.lineTo(116, 108);
-  ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(104, 108); ctx.lineTo(116, 108); ctx.stroke();
 
   // Eyes
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.arc(92, 108, 3, 0, Math.PI * 2);
   ctx.arc(128, 108, 3, 0, Math.PI * 2);
   ctx.fill();
 
-  // Animated Mouth
-  ctx.fillStyle = "#900";
+  // Mouth (Animated)
+  ctx.fillStyle = "#EB0029";
   ctx.beginPath();
-  let mouthHeight = 2 + mouthOpen * 12;
-  ctx.ellipse(110, 138, 10, mouthHeight, 0, 0, Math.PI * 2);
+  ctx.ellipse(110, 138, 10, 2 + mouthOpen * 10, 0, 0, Math.PI * 2);
   ctx.fill();
 }
 
-function startTalkingAnimation() {
-  isTalking = true;
-  document.getElementById('speaker-waves')?.classList.add('speaking');
-  document.getElementById('status-dot')?.classList.add('active');
-  document.getElementById('status-text').innerText = "Speaking SOP...";
-
-  function animate() {
-    if(!isTalking) {
-      drawMaleCharacter(0);
-      return;
-    }
-    mouthOpenRatio = Math.abs(Math.sin(Date.now() / 100));
-    drawMaleCharacter(mouthOpenRatio);
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-function stopTalkingAnimation() {
-  isTalking = false;
-  document.getElementById('speaker-waves')?.classList.remove('speaking');
-  document.getElementById('status-dot')?.classList.remove('active');
-  document.getElementById('status-text').innerText = "Ready to Guide";
-  drawMaleCharacter(0);
-}
-
-// ==========================================
-// 5. PURE HINDI MALE VOICE ENGINE
-// ==========================================
-function speakHindiInstruction(text) {
-  if (!('speechSynthesis' in window)) return;
-  synth.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'hi-IN';
-
-  if (voices.length === 0) voices = synth.getVoices();
-
-  const hindiMaleVoice = voices.find(v => 
-    (v.lang === 'hi-IN' || v.lang.startsWith('hi')) && 
-    (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('madhav') || v.name.toLowerCase().includes('hemant') || !v.name.toLowerCase().includes('female'))
-  );
-
-  if (hindiMaleVoice) {
-    utterance.voice = hindiMaleVoice;
-  }
-
-  utterance.rate = 0.95;
-  utterance.pitch = 0.9;
-
-  utterance.onstart = () => startTalkingAnimation();
-  utterance.onend = () => stopTalkingAnimation();
-  utterance.onerror = () => stopTalkingAnimation();
-
-  synth.speak(utterance);
-}
-
-// ==========================================
-// 6. RENDER LOGIC
-// ==========================================
+// SOP Training Card Renderer
 function renderStep(index) {
   const data = stepsData[index];
-  
   document.getElementById('current-step-num').innerText = data.step;
   document.getElementById('total-steps-num').innerText = stepsData.length;
   
@@ -323,37 +316,69 @@ function renderStep(index) {
 
   const displayArea = document.getElementById('step-card-display');
   displayArea.innerHTML = `
-    <div class="step-inner-card">
-      <span class="step-num-pill">PHASE 0${data.step} • ${data.category.toUpperCase()}</span>
-      <h3 class="step-main-title">${data.title}</h3>
+    <div class="op-card" style="border-top: 4px solid var(--op-red);">
+      <span class="op-tag">PHASE 0${data.step} • ${data.category.toUpperCase()}</span>
+      <h3 style="font-size:1.35rem; margin:8px 0; font-weight:800;">${data.title}</h3>
+      <p style="font-size:0.85rem; color:#666; font-weight:700; margin-bottom:14px;">Target System: <span style="color:#111;">${data.system}</span></p>
       
-      <div class="sys-badge">
-        <i data-lucide="cpu"></i> System: ${data.system}
+      <div style="background:#F4F5F7; padding:16px; border-radius:12px; margin-bottom:16px;">
+        <h4 style="font-size:0.8rem; text-transform:uppercase; color:#666; margin-bottom:8px; font-weight:800;">Execution Instructions:</h4>
+        <ul style="margin-left:18px; font-size:0.9rem; line-height:1.6; font-weight:600;">
+          ${data.instructions.map(inst => `<li style="margin-bottom:6px;">${inst}</li>`).join('')}
+        </ul>
       </div>
 
-      <ol class="instruction-list">
-        ${data.instructions.map(inst => `<li>${inst}</li>`).join('')}
-      </ol>
-
-      <div class="pro-tip-box">
-        <strong>Pro Executive Tip:</strong> ${data.proTip}
+      <div style="background:#FFEBEE; border-left:4px solid #EB0029; padding:12px 16px; font-size:0.85rem; border-radius:8px; color:#111; font-weight:600;">
+        <strong style="color:#EB0029;">Pro-Tip:</strong> ${data.proTip}
       </div>
     </div>
   `;
 
   if (window.lucide) lucide.createIcons();
-
   document.getElementById('prev-btn').disabled = index === 0;
-  const nextBtn = document.getElementById('next-btn');
-  nextBtn.innerHTML = index === stepsData.length - 1 ? 
-    `Finish Training <i data-lucide="check-circle"></i>` : 
-    `Next Step <i data-lucide="chevron-right"></i>`;
-
+  document.getElementById('next-btn').disabled = index === stepsData.length - 1;
   updateDots(index);
 
   if (isAudioOn) {
-    speakHindiInstruction(data.hindiAudio);
+    speakHindiVoice(data.hindiAudio);
   }
+}
+
+function speakHindiVoice(text) {
+  if (!synth) return;
+  synth.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'hi-IN';
+  utterance.rate = 0.95;
+
+  const waveBar = document.getElementById('speaker-waves');
+  const statusText = document.getElementById('status-text');
+  const statusDot = document.getElementById('status-dot');
+
+  let animationInterval;
+
+  utterance.onstart = () => {
+    if (waveBar) waveBar.classList.add('speaking');
+    if (statusText) statusText.innerText = "Speaking SOP Guidance...";
+    if (statusDot) statusDot.classList.add('active');
+
+    let toggleMouth = 0;
+    animationInterval = setInterval(() => {
+      toggleMouth = toggleMouth === 0 ? 1 : 0;
+      drawMaleCharacter(toggleMouth);
+    }, 180);
+  };
+
+  utterance.onend = () => {
+    clearInterval(animationInterval);
+    drawMaleCharacter(0);
+    if (waveBar) waveBar.classList.remove('speaking');
+    if (statusText) statusText.innerText = "Ready to Guide";
+    if (statusDot) statusDot.classList.remove('active');
+  };
+
+  synth.speak(utterance);
 }
 
 function renderDots() {
@@ -377,106 +402,47 @@ function updateDots(activeIndex) {
 }
 
 function setupEventListeners() {
-  document.getElementById('prev-btn').addEventListener('click', () => {
-    if (currentStep > 0) { currentStep--; renderStep(currentStep); }
-  });
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const replayBtn = document.getElementById('replay-voice-btn');
+  const audioToggleBtn = document.getElementById('toggle-audio-btn');
 
-  document.getElementById('next-btn').addEventListener('click', () => {
-    if (currentStep < stepsData.length - 1) { currentStep++; renderStep(currentStep); } 
-    else { alert('Aapne RJ RTO Training SOP Successfully Complete kar liya hai!'); }
-  });
-
-  document.getElementById('toggle-audio-btn').addEventListener('click', function() {
-    isAudioOn = !isAudioOn;
-    this.classList.toggle('active', isAudioOn);
-    this.querySelector('span').innerText = isAudioOn ? 'Voice Guide On' : 'Voice Guide Off';
-    if (!isAudioOn && synth.speaking) {
-      synth.cancel();
-      stopTalkingAnimation();
-    }
-  });
-
-  document.getElementById('replay-voice-btn').addEventListener('click', () => {
-    speakHindiInstruction(stepsData[currentStep].hindiAudio);
-  });
-}
-
-// ==========================================
-// 7. GOOGLE SHEET LIVE REPORT FETCHING & STRICT SANITIZATION
-// ==========================================
-async function fetchLiveDataFromSheet() {
-  try {
-    if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("PASTE_YOUR_GOOGLE_SHEET")) {
-      throw new Error("Invalid or unconfigured Sheet URL");
-    }
-
-    const response = await fetch(GOOGLE_SHEET_CSV_URL);
-    if (!response.ok) throw new Error("CSV Fetch failed");
-    
-    const rawText = await response.text();
-
-    // Check if returned response is actually HTML/JS code instead of pure CSV
-    if (rawText.trim().startsWith("<") || rawText.includes("function") || rawText.includes("typeof")) {
-      throw new Error("Returned response is HTML/JavaScript code, not a CSV stream.");
-    }
-
-    const rows = rawText.split('\n').map(row => row.split(','));
-
-    if (rows.length > 1) {
-      const parsedStates = [];
-      for (let i = 1; i < rows.length; i++) {
-        if (rows[i] && rows[i].length >= 2) {
-          const stName = rows[i][0]?.replace(/"/g, '').trim() || "";
-          const count = parseInt(rows[i][1]?.replace(/"/g, '').trim()) || 0;
-
-          // Reject any row containing code strings
-          if (stName && !stName.includes("function") && !stName.includes("{") && !stName.includes("var ")) {
-            parsedStates.push({ name: stName, count: count });
-          }
-        }
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        renderStep(currentStep);
       }
-
-      if (parsedStates.length > 0) {
-        renderReportTable({
-          date: rows[1][4]?.replace(/"/g, '').trim() || "9/17/2026",
-          states: parsedStates,
-          team1Score: parseInt(rows[1][2]) || 76,
-          vikashScore: parseInt(rows[2][2]) || 30,
-          sonuScore: parseInt(rows[3][2]) || 61
-        });
-        return;
-      }
-    }
-
-    throw new Error("CSV parsing returned empty valid rows");
-  } catch (error) {
-    console.warn("Sheet fetch blocked or unconfigured, rendering fallback data cleanly:", error.message);
-    renderReportTable(defaultReportData);
+    });
   }
-}
 
-function renderReportTable(data) {
-  const tbody = document.getElementById('state-rows-body');
-  if(!tbody) return;
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentStep < stepsData.length - 1) {
+        currentStep++;
+        renderStep(currentStep);
+      }
+    });
+  }
 
-  tbody.innerHTML = '';
-  let grandTotal = 0;
+  if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+      speakHindiVoice(stepsData[currentStep].hindiAudio);
+    });
+  }
 
-  data.states.forEach(st => {
-    grandTotal += Number(st.count);
-    tbody.innerHTML += `
-      <tr>
-        <td>${st.name}</td>
-        <td class="text-right">${st.count}</td>
-      </tr>
-    `;
-  });
-
-  document.getElementById('report-date-display').innerText = data.date;
-  document.getElementById('grand-total-val').innerText = grandTotal;
-  document.getElementById('big-grand-total').innerText = grandTotal;
-
-  document.getElementById('score-team-1').innerText = data.team1Score;
-  document.getElementById('score-vikash').innerText = data.vikashScore;
-  document.getElementById('score-sonu').innerText = data.sonuScore;
+  if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', () => {
+      isAudioOn = !isAudioOn;
+      if (isAudioOn) {
+        audioToggleBtn.classList.add('active');
+        audioToggleBtn.querySelector('span').innerText = "Voice Guide On";
+        speakHindiVoice(stepsData[currentStep].hindiAudio);
+      } else {
+        synth.cancel();
+        audioToggleBtn.classList.remove('active');
+        audioToggleBtn.querySelector('span').innerText = "Voice Muted";
+      }
+    });
+  }
 }
