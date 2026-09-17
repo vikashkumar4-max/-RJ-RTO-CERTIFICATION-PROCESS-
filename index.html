@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts: Playfair Display (Classic Royal) & Inter -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -22,7 +22,7 @@
       <div class="top-meta-links">
         <span><i data-lucide="shield-check"></i> ONLY USE FOR LEARNING </span>
         <span class="divider">|</span>
-        <span>Helpline:9896873022</span>
+        <span>Helpline: 9896873022</span>
       </div>
     </div>
   </div>
@@ -42,10 +42,10 @@
         </div>
       </div>
 
-      <!-- SUBJECT MODULE SELECTOR (WITH TODAY PROGRESS REPORT) -->
+      <!-- SUBJECT MODULE SELECTOR -->
       <div class="topic-selector-wrapper">
         <label for="training-module-select"><i data-lucide="layers"></i> SUBJECT MODULE:</label>
-        <select id="training-module-select" class="royal-select" onchange="handleModuleSwitch(this.value)">
+        <select id="training-module-select" class="royal-select" onchange="togglePortalView(this.value)">
           <option value="rto-certification" selected>RJ RTO Device Certification SOP</option>
           <option value="today-progress-report">📊 Today Progress Report</option>
           <option value="dl-verification" disabled>DL Verification System (Future Module)</option>
@@ -68,7 +68,7 @@
   <!-- Main Multi-Functional Portal Layout -->
   <main class="portal-container portal-grid">
 
-    <!-- LEFT SIDEBAR: Audio Console & Quick Navigation -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar-column">
 
       <!-- Executive Audio Console -->
@@ -79,7 +79,6 @@
         </div>
 
         <div class="speaker-stage">
-          <!-- 3D Wave Visualizer Rings -->
           <div class="speaker-wave-container" id="speaker-waves">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
@@ -87,7 +86,7 @@
           </div>
 
           <div class="avatar-classic-frame">
-            <img id="avatar-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC64lDi3RdETcheGYiHw3YQUStNo8R4E6pr9iMazMhphQYgtN-CzMAaQs&s" alt="Govt Official Avatar" />
+            <img id="avatar-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC64lDi3RdETcheGYiHw3YQUStNo8R4E6pr9iMazMhphQYgtN-CzMAaQs&s" alt="Official Avatar" />
           </div>
 
           <div class="voice-badge-pill">
@@ -103,32 +102,31 @@
           </button>
         </div>
 
-        <!-- Hidden script holder to keep JavaScript functionality untouched -->
         <p id="dialogue-text" style="display: none !important;"></p>
       </div>
 
-      <!-- MODULE DIRECTORY PANEL (WITH CLICKABLE TODAY REPORT) -->
+      <!-- Module Directory Panel -->
       <div class="royal-card module-directory-card">
         <div class="card-sub-header">
           <i data-lucide="book-open"></i>
           <span>Available Training Topics</span>
         </div>
         <ul class="topic-list">
-          <li id="menu-rto-cert" class="active" onclick="handleModuleSwitch('rto-certification')">
+          <li id="menu-item-sop" class="active" onclick="togglePortalView('rto-certification')">
             <i data-lucide="check-circle-2"></i>
             <span>RJ RTO Device Certification Process</span>
           </li>
-
+          
           <!-- TODAY PROGRESS REPORT SIDEBAR BUTTON -->
-          <li id="menu-today-report" class="highlight-report-item" onclick="handleModuleSwitch('today-progress-report')">
-            <i data-lucide="file-spreadsheet" class="gold-icon"></i>
+          <li id="menu-item-report" class="highlight-report-item" onclick="togglePortalView('today-progress-report')">
+            <i data-lucide="bar-chart-3" class="gold-icon"></i>
             <span>Today Progress Report</span>
-            <span class="live-tag-pill">LIVE</span>
+            <span class="live-pill">LIVE</span>
           </li>
 
           <li class="locked">
             <i data-lucide="lock"></i>
-            <span>Common RTO certification process </span>
+            <span>Common RTO certification process</span>
           </li>
           <li class="locked">
             <i data-lucide="lock"></i>
@@ -142,9 +140,9 @@
     <!-- RIGHT MAIN CONTENT AREA -->
     <section class="main-column">
 
-      <!-- VIEW 1: TRAINING STEP VIEWPORT (DEFAULT) -->
-      <div id="training-steps-viewport">
-        <!-- Top Module Bar & Progress -->
+      <!-- VIEW 1: TRAINING DASHBOARD VIEWPORT -->
+      <div id="training-portal-view">
+        
         <div class="royal-card progress-card flex-between">
           <div class="module-meta">
             <span class="meta-label">ACTIVE TOPIC:</span>
@@ -155,7 +153,6 @@
           </div>
         </div>
 
-        <!-- Overall Module Bar -->
         <div class="royal-card progress-bar-panel">
           <div class="progress-info flex-between">
             <span>Overall Module Progress</span>
@@ -166,12 +163,10 @@
           </div>
         </div>
 
-        <!-- Dynamic Content Body (JS Rendered) -->
         <div class="royal-card dynamic-content-card" id="step-card-display">
           <!-- Rendered by script.js -->
         </div>
 
-        <!-- Classic Navigation Footer -->
         <footer class="royal-card nav-footer flex-between">
           <button id="prev-btn" class="classic-nav-btn" disabled>
             <i data-lucide="arrow-left"></i> Previous Step
@@ -185,33 +180,105 @@
             Next Step <i data-lucide="arrow-right"></i>
           </button>
         </footer>
+
       </div>
 
-      <!-- VIEW 2: TODAY PROGRESS GOOGLE SHEET REPORT CARD -->
-      <div id="google-sheet-report-viewport" style="display: none;">
-        <div class="royal-card report-container-card">
+      <!-- VIEW 2: REPORT DASHBOARD VIEW -->
+      <div id="report-dashboard-view" style="display: none;">
+        <div class="royal-card report-outer-card">
+          
           <div class="report-header-flex flex-between">
-            <div class="report-meta-info">
-              <span class="live-status-badge"><i data-lucide="radio"></i> LIVE DATABASE SYNC</span>
-              <h2>Today Progress Report</h2>
-              <p>Wheelseye AIS Team Real-time Progress & Inspection Analytics</p>
+            <div class="report-meta">
+              <span class="badge-live-tag"><i data-lucide="radio"></i> LIVE REAL-TIME DATA</span>
+              <h2>Executive Today Progress Report</h2>
+              <p>Wheelseye AIS Field Operations & Verification Analytics</p>
             </div>
-            <div class="report-btn-group">
-              <button class="royal-gold-btn" onclick="refreshReportSheet()">
-                <i data-lucide="rotate-cw"></i> Refresh
-              </button>
-            </div>
+            <button class="royal-gold-btn" onclick="fetchLiveDataFromSheet()">
+              <i data-lucide="rotate-cw"></i> Refresh Metrics
+            </button>
           </div>
 
-          <!-- Google Sheet iFrame Container -->
-          <div class="sheet-frame-holder">
-            <iframe 
-              id="report-google-sheet-iframe" 
-              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pubhtml?gid=780031891&amp;single=true&amp;widget=true&amp;headers=false"></iframe>" 
-              frameborder="0" 
-              allowfullscreen>
-            </iframe>
+          <!-- 2 RICH REPORT CARDS -->
+          <div class="rich-reports-grid">
+
+            <!-- REPORT CARD 1 -->
+            <div class="rich-kpi-card gold-accent-card">
+              <div class="kpi-top flex-between">
+                <div class="kpi-title-area">
+                  <span class="kpi-sub">DAILY TARGET METRICS</span>
+                  <h3>RTO Certification Log</h3>
+                </div>
+                <div class="kpi-icon-circle gold-circle">
+                  <i data-lucide="shield-check"></i>
+                </div>
+              </div>
+
+              <div class="kpi-body-metrics grid-3">
+                <div class="metric-box">
+                  <span class="m-label">Total Conducted</span>
+                  <span class="m-val" id="kpi1-total">148</span>
+                </div>
+                <div class="metric-box green-box">
+                  <span class="m-label">Verified & Passed</span>
+                  <span class="m-val" id="kpi1-passed">132</span>
+                </div>
+                <div class="metric-box orange-box">
+                  <span class="m-label">Pending Approval</span>
+                  <span class="m-val" id="kpi1-pending">16</span>
+                </div>
+              </div>
+
+              <div class="kpi-footer-progress">
+                <div class="flex-between m-footer-text">
+                  <span>Compliance Efficiency Rate</span>
+                  <strong id="kpi1-percent">89.1%</strong>
+                </div>
+                <div class="progress-line">
+                  <div class="line-fill gold-gradient" id="kpi1-bar" style="width: 89.1%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REPORT CARD 2 -->
+            <div class="rich-kpi-card navy-accent-card">
+              <div class="kpi-top flex-between">
+                <div class="kpi-title-area">
+                  <span class="kpi-sub">AUDIT & QUALITY LOG</span>
+                  <h3>Inspection & Audit Metrics</h3>
+                </div>
+                <div class="kpi-icon-circle navy-circle">
+                  <i data-lucide="activity"></i>
+                </div>
+              </div>
+
+              <div class="kpi-body-metrics grid-3">
+                <div class="metric-box">
+                  <span class="m-label">Active Officers</span>
+                  <span class="m-val" id="kpi2-officers">24</span>
+                </div>
+                <div class="metric-box blue-box">
+                  <span class="m-label">Quality Score</span>
+                  <span class="m-val" id="kpi2-score">96.4</span>
+                </div>
+                <div class="metric-box red-box">
+                  <span class="m-label">Flagged SOPs</span>
+                  <span class="m-val" id="kpi2-flagged">03</span>
+                </div>
+              </div>
+
+              <div class="kpi-footer-progress">
+                <div class="flex-between m-footer-text">
+                  <span>Daily Target Completed</span>
+                  <strong id="kpi2-percent">92.0%</strong>
+                </div>
+                <div class="progress-line">
+                  <div class="line-fill navy-gradient" id="kpi2-bar" style="width: 92%;"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </div>
 
@@ -219,41 +286,32 @@
 
   </main>
 
-  <!-- Module Switcher Script -->
+  <!-- VIEW TOGGLE SCRIPT -->
   <script>
-    function handleModuleSwitch(selectedModule) {
-      const trainingView = document.getElementById('training-steps-viewport');
-      const reportView = document.getElementById('google-sheet-report-viewport');
-      const selectDropdown = document.getElementById('training-module-select');
-      const itemRto = document.getElementById('menu-rto-cert');
-      const itemReport = document.getElementById('menu-today-report');
+    function togglePortalView(val) {
+      const trainingView = document.getElementById('training-portal-view');
+      const reportView = document.getElementById('report-dashboard-view');
+      const dropdown = document.getElementById('training-module-select');
+      const sopItem = document.getElementById('menu-item-sop');
+      const reportItem = document.getElementById('menu-item-report');
 
-      if (selectedModule === 'today-progress-report') {
+      if (val === 'today-progress-report') {
         trainingView.style.display = 'none';
         reportView.style.display = 'block';
 
-        if(selectDropdown) selectDropdown.value = 'today-progress-report';
-        if(itemRto) itemRto.classList.remove('active');
-        if(itemReport) itemReport.classList.add('active');
+        if(dropdown) dropdown.value = 'today-progress-report';
+        if(sopItem) sopItem.classList.remove('active');
+        if(reportItem) reportItem.classList.add('active');
       } else {
         trainingView.style.display = 'block';
         reportView.style.display = 'none';
 
-        if(selectDropdown) selectDropdown.value = 'rto-certification';
-        if(itemRto) itemRto.classList.add('active');
-        if(itemReport) itemReport.classList.remove('active');
+        if(dropdown) dropdown.value = 'rto-certification';
+        if(sopItem) sopItem.classList.add('active');
+        if(reportItem) reportItem.classList.remove('active');
       }
 
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-    }
-
-    function refreshReportSheet() {
-      const iframe = document.getElementById('report-google-sheet-iframe');
-      if (iframe) {
-        iframe.src = iframe.src;
-      }
+      if (window.lucide) lucide.createIcons();
     }
   </script>
 
