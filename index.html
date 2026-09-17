@@ -3,47 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RJ RTO Certification Process - Training</title>
+  <title>RJ RTO Training Portal - </title>
   <link rel="stylesheet" href="style.css">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top App Bar -->
-  <header class="app-header">
-    <div class="logo-area">
-      <div class="logo-badge">RTO</div>
-      <div class="logo-text">
-        <h1>RJ RTO Certification Process</h1>
-        <span>Interactive SOP Employee Training Deck</span>
-      </div>
+  <!-- Top Official Strip -->
+  <div class="gov-top-strip">
+    <div class="gov-container strip-content">
+      <span class="gov-title-tag"><i data-lucide="shield-check"></i>MRATYUNJAY BRAHMAVANSHI </span>
+      <span class="helpline-text"> </span>
     </div>
-    <div class="header-controls">
-      <div class="step-indicator">
-        Step <span id="current-step-num">1</span> / <span id="total-steps-num">10</span>
+  </div>
+
+  <!-- Government Main Header -->
+  <header class="gov-header">
+    <div class="gov-container header-content">
+      <div class="gov-brand">
+        <div class="gov-logo-box">
+          <i data-lucide="building-2"></i>
+        </div>
+        <div class="gov-brand-titles">
+          <h1>सड़क परिवहन एवं राजमार्ग मंत्रालय - आर.टी.ओ. राजस्थान</h1>
+          <h2>RJ RTO Device Certification & Verification Training Module</h2>
+        </div>
       </div>
-      <button id="toggle-audio-btn" class="audio-toggle-btn active" title="Voice Guidance On/Off">
-        <i data-lucide="volume-2"></i>
-        <span>Audio Guide On</span>
-      </button>
+      <div class="gov-header-actions">
+        <div class="step-indicator-box">
+          Step <span id="current-step-num">1</span> of <span id="total-steps-num">10</span>
+        </div>
+        <button id="toggle-audio-btn" class="gov-btn-audio active">
+          <i data-lucide="volume-2"></i>
+          <span>Audio Guide On</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="main-container">
+  <!-- Main Body Layout -->
+  <main class="gov-container main-layout">
 
-    <!-- LEFT SIDE: Interactive 3D Animated Trainer Avatar -->
-    <section class="avatar-sidebar">
-      <div class="avatar-card">
-        <!-- 3D Stage Visual -->
-        <div class="stage-background">
-          <div class="glow-orb"></div>
+    <!-- LEFT COLUMN: 3D Voice Avatar -->
+    <aside class="left-col">
+      <div class="gov-card avatar-card">
+        <div class="card-gov-header">
+          <i data-lucide="user-check"></i>
+          <span>आर.टी.ओ. प्रशिक्षक (Official Trainer)</span>
         </div>
 
-        <!-- Animated Avatar Canvas Container -->
         <div class="avatar-stage">
           <div class="speaker-wave-container" id="speaker-waves">
             <div class="wave wave1"></div>
@@ -51,58 +62,61 @@
             <div class="wave wave3"></div>
           </div>
 
-          <!-- Stylized Avatar Close-Up View -->
           <div class="avatar-wrapper" id="avatar-wrapper">
-            <img id="avatar-img" src="https://images.unsplash.com/vector-1776064162340-4a25be055599?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="3D Trainer Persona" />
-            <div class="avatar-status-badge" id="avatar-status">
+            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Govt Trainer Avatar" />
+            <div class="avatar-status-badge">
               <span class="status-dot"></span>
               <span id="status-text">Ready to Guide</span>
             </div>
           </div>
         </div>
 
-        <!-- Speech / Script Bubble -->
         <div class="dialogue-box">
           <div class="dialogue-header">
-            <i data-lucide="bot"></i>
-            <span>3D Trainer Instruction (Hindi)</span>
+            <i data-lucide="message-square"></i>
+            <span>Hindi Voice Instruction</span>
           </div>
-          <p id="dialogue-text">Namaste! Naye employees ka RJ RTO Certification Training me swagat hai. Aaj hum poora 10-step process seekhenge.</p>
-          <button id="replay-voice-btn" class="btn-speech">
-            <i data-lucide="play-circle"></i> Suniye Voice Instruction
+          <p id="dialogue-text">Loading instructions...</p>
+          <button id="replay-voice-btn" class="gov-btn-speech">
+            <i data-lucide="play"></i> Replay Audio
           </button>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- RIGHT SIDE: Modern Glassmorphic Step Interactive Deck -->
-    <section class="content-viewport">
+    <!-- RIGHT COLUMN: Instructions Display & Timeline -->
+    <section class="right-col">
 
-      <!-- Progress Bar -->
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progress-bar"></div>
+      <!-- Overall Progress -->
+      <div class="gov-card progress-card">
+        <div class="progress-title-row">
+          <span>Overall SOP Completion Progress</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
       </div>
 
-      <!-- Step Cards Container -->
-      <div class="step-card-display" id="step-card-display">
-        <!-- Active Step Card Inserted via JavaScript -->
+      <!-- Main Dynamic Content Card -->
+      <div class="gov-card content-card" id="step-card-display">
+        <!-- Rendered by JS -->
       </div>
 
-      <!-- Bottom Navigation Bar -->
-      <footer class="deck-nav">
-        <button id="prev-btn" class="nav-btn prev" disabled>
+      <!-- Bottom Navigation Controls -->
+      <footer class="gov-card nav-footer">
+        <button id="prev-btn" class="gov-nav-btn" disabled>
           <i data-lucide="arrow-left"></i> Previous Step
         </button>
 
-        <!-- Thumbnails / Timeline Selector -->
         <div class="step-dots-timeline" id="step-dots-timeline">
-          <!-- Dots generated via JavaScript -->
+          <!-- Rendered by JS -->
         </div>
 
-        <button id="next-btn" class="nav-btn next">
+        <button id="next-btn" class="gov-nav-btn primary">
           Next Step <i data-lucide="arrow-right"></i>
         </button>
       </footer>
+
     </section>
 
   </main>
