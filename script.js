@@ -1,4 +1,12 @@
-// Complete 10-step RJ RTO Process Data with Hindi Voice Audio Texts (Devanagari Script for Proper Pronunciation)
+// ==========================================
+// 1. GOOGLE SHEET LINK CONFIGURATION
+// ==========================================
+// Apni Published Google Sheet ka CSV link yahan paste karein
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vXXXX/pub?output=csv";
+
+// ==========================================
+// 2. RJ RTO PROCESS DATA (10 STEPS)
+// ==========================================
 const stepsData = [
   {
     step: 1,
@@ -132,6 +140,9 @@ const stepsData = [
   }
 ];
 
+// ==========================================
+// 3. GLOBAL VARIABLES
+// ==========================================
 let currentStep = 0;
 let isAudioOn = true;
 let synth = window.speechSynthesis;
@@ -146,13 +157,20 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = loadVoices;
 }
 
+// ==========================================
+// 4. INITIALIZATION & DOM READY
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   renderStep(currentStep);
   renderDots();
   setupEventListeners();
+  fetchLiveDataFromSheet(); // Live Sheet Report Data Call
   if (window.lucide) lucide.createIcons();
 });
 
+// ==========================================
+// 5. STEP RENDER & NAVIGATION LOGIC
+// ==========================================
 function renderStep(index) {
   const data = stepsData[index];
   
@@ -212,6 +230,7 @@ function renderStep(index) {
 
 function renderDots() {
   const dotsContainer = document.getElementById('step-dots-timeline');
+  if (!dotsContainer) return;
   dotsContainer.innerHTML = '';
   stepsData.forEach((_, idx) => {
     const dot = document.createElement('div');
@@ -263,7 +282,9 @@ function setupEventListeners() {
   });
 }
 
-// Fixed Hindi Voice Function
+// ==========================================
+// 6. HINDI VOICE SPEECH ENGINE
+// ==========================================
 function speakHindiInstruction(text) {
   if (!('speechSynthesis' in window)) return;
 
@@ -272,7 +293,6 @@ function speakHindiInstruction(text) {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'hi-IN'; // Force Hindi language code
 
-  // Find Hindi Voice
   if (voices.length === 0) voices = synth.getVoices();
   const hindiVoice = voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi') || v.name.includes('Hindi'));
   
@@ -280,7 +300,7 @@ function speakHindiInstruction(text) {
     utterance.voice = hindiVoice;
   }
 
-  utterance.rate = 0.9; // Clear natural pace
+  utterance.rate = 0.9;
   utterance.pitch = 1.0;
 
   utterance.onstart = () => startTalkingAnimation();
@@ -291,13 +311,67 @@ function speakHindiInstruction(text) {
 }
 
 function startTalkingAnimation() {
-  document.getElementById('speaker-waves').classList.add('speaking');
-  document.getElementById('status-text').innerText = 'Speaking Instruction...';
-  document.getElementById('avatar-wrapper').style.transform = 'scale(1.05)';
+  const waves = document.getElementById('speaker-waves');
+  const status = document.getElementById('status-text');
+  const avatar = document.getElementById('avatar-wrapper');
+
+  if (waves) waves.classList.add('speaking');
+  if (status) status.innerText = 'Speaking Instruction...';
+  if (avatar) avatar.style.transform = 'scale(1.05)';
 }
 
 function stopTalkingAnimation() {
-  document.getElementById('speaker-waves').classList.remove('speaking');
-  document.getElementById('status-text').innerText = 'Ready to Guide';
-  document.getElementById('avatar-wrapper').style.transform = 'scale(1)';
+  const waves = document.getElementById('speaker-waves');
+  const status = document.getElementById('status-text');
+  const avatar = document.getElementById('avatar-wrapper');
+
+  if (waves) waves.classList.remove('speaking');
+  if (status) status.innerText = 'Ready to Guide';
+  if (avatar) avatar.style.transform = 'scale(1)';
+}
+
+// ==========================================
+// 7. GOOGLE SHEET LIVE REPORT DATA FETCH
+// ==========================================
+async function fetchLiveDataFromSheet() {
+  try {
+    const response = await fetch(GOOGLE_SHEET_CSV_URL);
+    if (!response.ok) throw new Error("Network error fetching sheet");
+    
+    const csvText = await response.text();
+    const rows = csvText.split('\n').map(row => row.split(','));
+
+    // Google Sheet se dynamic values update karein
+    if (rows.length > 1) {
+      const kpi1Total = document.getElementById('kpi1-total');
+      const kpi1Passed = document.getElementById('kpi1-passed');
+      const kpi1Pending = document.getElementById('kpi1-pending');
+      const kpi1Percent = document.getElementById('kpi1-percent');
+      const kpi1Bar = document.getElementById('kpi1-bar');
+
+      if (kpi1Total) kpi1Total.innerText = rows[1][0]?.trim() || '148';
+      if (kpi1Passed) kpi1Passed.innerText = rows[1][1]?.trim() || '132';
+      if (kpi1Pending) kpi1Pending.innerText = rows[1][2]?.trim() || '16';
+      
+      const percent1 = rows[1][3]?.trim() || '89.1%';
+      if (kpi1Percent) kpi1Percent.innerText = percent1;
+      if (kpi1Bar) kpi1Bar.style.width = percent1;
+
+      const kpi2Officers = document.getElementById('kpi2-officers');
+      const kpi2Score = document.getElementById('kpi2-score');
+      const kpi2Flagged = document.getElementById('kpi2-flagged');
+      const kpi2Percent = document.getElementById('kpi2-percent');
+      const kpi2Bar = document.getElementById('kpi2-bar');
+
+      if (kpi2Officers) kpi2Officers.innerText = rows[2][0]?.trim() || '24';
+      if (kpi2Score) kpi2Score.innerText = rows[2][1]?.trim() || '96.4';
+      if (kpi2Flagged) kpi2Flagged.innerText = rows[2][2]?.trim() || '03';
+
+      const percent2 = rows[2][3]?.trim() || '92.0%';
+      if (kpi2Percent) kpi2Percent.innerText = percent2;
+      if (kpi2Bar) kpi2Bar.style.width = percent2;
+    }
+  } catch (error) {
+    console.log("Sheet link active nahi hai, default static values show hongi:", error);
+  }
 }
