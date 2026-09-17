@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>National Transport Executive Training Portal</title>
+  <title>live dashboard and training metarial</title>
   <link rel="stylesheet" href="style.css">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -85,7 +85,7 @@
             <div class="wave wave3"></div>
           </div>
 
-          <div class="avatar-classic-frame">
+          <div class="avatar-classic-frame" id="avatar-wrapper">
             <img id="avatar-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC64lDi3RdETcheGYiHw3YQUStNo8R4E6pr9iMazMhphQYgtN-CzMAaQs&s" alt="Official Avatar" />
           </div>
 
@@ -130,7 +130,7 @@
           </li>
           <li class="locked">
             <i data-lucide="lock"></i>
-            <span>mines certification process</span>
+            <span>Mines certification process</span>
           </li>
         </ul>
       </div>
@@ -164,7 +164,7 @@
         </div>
 
         <div class="royal-card dynamic-content-card" id="step-card-display">
-          <!-- Rendered by script.js -->
+          <!-- Dynamic Step Content Rendered by script.js -->
         </div>
 
         <footer class="royal-card nav-footer flex-between">
@@ -173,7 +173,7 @@
           </button>
 
           <div class="step-dots-timeline" id="step-dots-timeline">
-            <!-- Rendered by script.js -->
+            <!-- Dynamic Dots Rendered by script.js -->
           </div>
 
           <button id="next-btn" class="classic-nav-btn primary">
@@ -183,100 +183,81 @@
 
       </div>
 
-      <!-- VIEW 2: REPORT DASHBOARD VIEW -->
+      <!-- VIEW 2: REPORT DASHBOARD VIEW (EXACT COMMON RTO REPORT LAYOUT) -->
       <div id="report-dashboard-view" style="display: none;">
         <div class="royal-card report-outer-card">
           
           <div class="report-header-flex flex-between">
             <div class="report-meta">
               <span class="badge-live-tag"><i data-lucide="radio"></i> LIVE REAL-TIME DATA</span>
-              <h2>Executive Today Progress Report</h2>
-              <p>Wheelseye AIS Field Operations & Verification Analytics</p>
+              <span id="report-date-display" class="report-date-badge">9/17/2026</span>
             </div>
             <button class="royal-gold-btn" onclick="fetchLiveDataFromSheet()">
               <i data-lucide="rotate-cw"></i> Refresh Metrics
             </button>
           </div>
 
-          <!-- 2 RICH REPORT CARDS -->
-          <div class="rich-reports-grid">
-
-            <!-- REPORT CARD 1 -->
-            <div class="rich-kpi-card gold-accent-card">
-              <div class="kpi-top flex-between">
-                <div class="kpi-title-area">
-                  <span class="kpi-sub">DAILY TARGET METRICS</span>
-                  <h3>RTO Certification Log</h3>
-                </div>
-                <div class="kpi-icon-circle gold-circle">
-                  <i data-lucide="shield-check"></i>
-                </div>
+          <!-- COMMON RTO REPORT CARD -->
+          <div class="common-rto-wrapper">
+            <div class="rto-header-banner">Common RTO</div>
+            
+            <div class="rto-grid-container">
+              
+              <!-- COLUMN 1 & 2: STATE & CERTIFICATE TABLE -->
+              <div class="rto-table-section">
+                <table class="rto-data-table">
+                  <thead>
+                    <tr>
+                      <th>STATE</th>
+                      <th>Certificate Issued</th>
+                    </tr>
+                  </thead>
+                  <tbody id="state-rows-body">
+                    <!-- Rendered Dynamically via script.js -->
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>TOTAL</td>
+                      <td id="grand-total-val">166</td>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
 
-              <div class="kpi-body-metrics grid-3">
-                <div class="metric-box">
-                  <span class="m-label">Total Conducted</span>
-                  <span class="m-val" id="kpi1-total">148</span>
-                </div>
-                <div class="metric-box green-box">
-                  <span class="m-label">Verified & Passed</span>
-                  <span class="m-val" id="kpi1-passed">132</span>
-                </div>
-                <div class="metric-box orange-box">
-                  <span class="m-label">Pending Approval</span>
-                  <span class="m-val" id="kpi1-pending">16</span>
-                </div>
+              <!-- COLUMN 3: GRAND TOTAL BIG BLOCK -->
+              <div class="rto-grand-total-block">
+                <span id="big-grand-total">166</span>
               </div>
 
-              <div class="kpi-footer-progress">
-                <div class="flex-between m-footer-text">
-                  <span>Compliance Efficiency Rate</span>
-                  <strong id="kpi1-percent">89.1%</strong>
+              <!-- COLUMN 4: AGENTS BREAKDOWN -->
+              <div class="rto-agents-section">
+                
+                <div class="agent-card-row">
+                  <div class="agent-names-box green-box">
+                    <div>RAJSHEKHAR</div>
+                    <div>LAKSHYA</div>
+                    <div>RAGHAV</div>
+                  </div>
+                  <div class="agent-score-box yellow-bg" id="score-team-1">76</div>
                 </div>
-                <div class="progress-line">
-                  <div class="line-fill gold-gradient" id="kpi1-bar" style="width: 89.1%;"></div>
+
+                <div class="agent-card-row margin-top-box">
+                  <div class="agent-names-box green-box single-agent">
+                    <div>VIKASH</div>
+                  </div>
+                  <div class="agent-score-box peach-bg" id="score-vikash">30</div>
                 </div>
+
+                <div class="agent-card-row">
+                  <div class="agent-names-box green-box single-agent">
+                    <div>SONU</div>
+                  </div>
+                  <div class="agent-score-box peach-bg" id="score-sonu">61</div>
+                </div>
+
               </div>
+
             </div>
-
-            <!-- REPORT CARD 2 -->
-            <div class="rich-kpi-card navy-accent-card">
-              <div class="kpi-top flex-between">
-                <div class="kpi-title-area">
-                  <span class="kpi-sub">AUDIT & QUALITY LOG</span>
-                  <h3>Inspection & Audit Metrics</h3>
-                </div>
-                <div class="kpi-icon-circle navy-circle">
-                  <i data-lucide="activity"></i>
-                </div>
-              </div>
-
-              <div class="kpi-body-metrics grid-3">
-                <div class="metric-box">
-                  <span class="m-label">Active Officers</span>
-                  <span class="m-val" id="kpi2-officers">24</span>
-                </div>
-                <div class="metric-box blue-box">
-                  <span class="m-label">Quality Score</span>
-                  <span class="m-val" id="kpi2-score">96.4</span>
-                </div>
-                <div class="metric-box red-box">
-                  <span class="m-label">Flagged SOPs</span>
-                  <span class="m-val" id="kpi2-flagged">03</span>
-                </div>
-              </div>
-
-              <div class="kpi-footer-progress">
-                <div class="flex-between m-footer-text">
-                  <span>Daily Target Completed</span>
-                  <strong id="kpi2-percent">92.0%</strong>
-                </div>
-                <div class="progress-line">
-                  <div class="line-fill navy-gradient" id="kpi2-bar" style="width: 92%;"></div>
-                </div>
-              </div>
-            </div>
-
           </div>
 
         </div>
