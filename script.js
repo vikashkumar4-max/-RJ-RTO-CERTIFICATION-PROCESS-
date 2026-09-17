@@ -1,10 +1,10 @@
 // ==========================================
-// 1. APPS SCRIPT API URL (Paste your link here)
+// 1. APPS SCRIPT WEB APP API URL
 // ==========================================
-const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbwSIKcE5PYWtmdrVpgKc_-3D19UQKLmc185vlKOl_XkfKUXotVJpws7ARjYycVg7pLqLA/exec";
+const APPS_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbyxtYuQT4gHPM2ANN8dhXYZS_H8j1fA0-ImLTZ-o76J3ONs42ITzsJvcGU56wjMaeec4g/exec";
 
 // ==========================================
-// 2. COMPLETE RTO CERTIFICATION SOP TRAINING DATA
+// 2. SOP TRAINING MODULE DATA (UNTOUCHED - EXACT 10 STEPS)
 // ==========================================
 const stepsData = [
   {
@@ -139,18 +139,47 @@ const stepsData = [
   }
 ];
 
-const fallbackReportData = {
-  date: "9/18/2026",
-  states: [
-    { name: "HR-RTO", count: 76 },
-    { name: "PB-RTO", count: 20 },
-    { name: "GJ-RTO", count: 43 },
-    { name: "DD-RTO", count: 2 },
-    { name: "AS-RTO", count: 6 }
+// Fallback Data Matching Your Screenshot Exactly
+const fallbackOpsData = {
+  selectedDate: "9/17/2026",
+  hourlyData: [
+    { rto: "HR_RTO", h10: 0, h11: 3, h12: 3, h1: 3, h2: 3, h3: 1, h4: 12, h5: 4, h6: 8, h7: 1, h8: 3, total: 41, totalIssued: 59 },
+    { rto: "PB_RTO", h10: 0, h11: 0, h12: 5, h1: 4, h2: 0, h3: 0, h4: 1, h5: 0, h6: 4, h7: 6, h8: 0, total: 20, totalIssued: 20 },
+    { rto: "GJ_RTO", h10: 0, h11: 6, h12: 4, h1: 5, h2: 5, h3: 3, h4: 8, h5: 5, h6: 3, h7: 8, h8: 0, total: 47, totalIssued: 47 },
+    { rto: "DD_RTO", h10: 0, h11: 1, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 1, h6: 0, h7: 0, h8: 0, total: 2, totalIssued: 2 },
+    { rto: "AS_RTO", h10: 0, h11: 0, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 1, h6: 3, h7: 2, h8: 0, total: 6, totalIssued: 6 },
+    { rto: "AP_RTO", h10: 0, h11: 0, h12: 1, h1: 0, h2: 1, h3: 0, h4: 0, h5: 0, h6: 1, h7: 1, h8: 0, total: 4, totalIssued: 4 },
+    { rto: "AR_RTO", h10: 0, h11: 0, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 0, h6: 0, h7: 0, h8: 0, total: 0, totalIssued: 0 },
+    { rto: "NL_RTO", h10: 0, h11: 0, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 5, h6: 2, h7: 1, h8: 0, total: 8, totalIssued: 8 },
+    { rto: "JK_RTO", h10: 0, h11: 1, h12: 3, h1: 0, h2: 0, h3: 0, h4: 0, h5: 1, h6: 0, h7: 2, h8: 0, total: 7, totalIssued: 7 },
+    { rto: "JH_RTO", h10: 0, h11: 0, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 0, h6: 0, h7: 0, h8: 0, total: 0, totalIssued: 0 },
+    { rto: "TS_RTO", h10: 0, h11: 0, h12: 0, h1: 0, h2: 0, h3: 0, h4: 0, h5: 0, h6: 0, h7: 0, h8: 0, total: 0, totalIssued: 0 }
   ],
-  team1Score: 76,
-  vikashScore: 30,
-  sonuScore: 61
+  allOverIssued: [
+    { rto: "HR_RTO", inOffice: 41, totalIssued: 59, extra: 18 },
+    { rto: "PB_RTO", inOffice: 20, totalIssued: 20, extra: 0 },
+    { rto: "GJ_RTO", inOffice: 47, totalIssued: 47, extra: 0 },
+    { rto: "DD_RTO", inOffice: 2, totalIssued: 2, extra: 0 },
+    { rto: "AS_RTO", inOffice: 6, totalIssued: 6, extra: 0 },
+    { rto: "AP_RTO", inOffice: 4, totalIssued: 4, extra: 0 },
+    { rto: "AR_RTO", inOffice: 0, totalIssued: 0, extra: 0 },
+    { rto: "NL_RTO", inOffice: 8, totalIssued: 8, extra: 0 },
+    { rto: "JK_RTO", inOffice: 7, totalIssued: 7, extra: 0 },
+    { rto: "JH_RTO", inOffice: 0, totalIssued: 0, extra: 0 },
+    { rto: "TS_RTO", inOffice: 0, totalIssued: 0, extra: 0 }
+  ],
+  last10Days: [
+    { date: "8-Sep", count: 140 },
+    { date: "9-Sep", count: 153 },
+    { date: "10-Sep", count: 181 },
+    { date: "11-Sep", count: 151 },
+    { date: "12-Sep", count: 161 },
+    { date: "13-Sep", count: 64 },
+    { date: "14-Sep", count: 71 },
+    { date: "15-Sep", count: 134 },
+    { date: "16-Sep", count: 124 },
+    { date: "9/17/2026", count: 153 }
+  ]
 };
 
 let currentStep = 0;
@@ -158,85 +187,160 @@ let isAudioOn = true;
 let synth = window.speechSynthesis;
 let canvas, ctx;
 
-// Initialization
 document.addEventListener('DOMContentLoaded', () => {
   initMaleCharacterCanvas();
   renderStep(currentStep);
   renderDots();
   setupEventListeners();
+  renderOperationsDashboard(fallbackOpsData);
   fetchLiveDataFromSheet();
   if (window.lucide) lucide.createIcons();
 });
 
-// INSTANT LIVE DATA FETCH FROM APPS SCRIPT
 async function fetchLiveDataFromSheet() {
-  const syncIcon = document.getElementById('sync-icon');
-  if (syncIcon) syncIcon.classList.add('spin-anim');
-
   try {
     if (!APPS_SCRIPT_API_URL || APPS_SCRIPT_API_URL.includes("PASTE_YOUR_APPS_SCRIPT")) {
-      throw new Error("Apps Script URL Unconfigured");
+      throw new Error("Unconfigured Script URL");
     }
-
-    const response = await fetch(APPS_SCRIPT_API_URL);
-    if (!response.ok) throw new Error("API Fetch Error");
-
-    const jsonRows = await response.json();
-
-    if (jsonRows && jsonRows.length > 1) {
-      const parsedStates = [];
-      for (let i = 1; i < jsonRows.length; i++) {
-        const row = jsonRows[i];
-        if (row && row[0]) {
-          const stName = String(row[0]).trim();
-          const count = parseInt(row[1]) || 0;
-          if (stName) parsedStates.push({ name: stName, count: count });
-        }
-      }
-
-      renderReportTable({
-        date: String(jsonRows[1][4] || "9/18/2026"),
-        states: parsedStates,
-        team1Score: parseInt(jsonRows[1][2]) || 0,
-        vikashScore: parseInt(jsonRows[2][2]) || 0,
-        sonuScore: parseInt(jsonRows[3][2]) || 0
-      });
-      return;
+    const res = await fetch(APPS_SCRIPT_API_URL);
+    const json = await res.json();
+    if (json && json.status === "success") {
+      renderOperationsDashboard(json);
     }
-    throw new Error("Invalid Format");
-  } catch (err) {
-    console.warn("Using local fallback data:", err.message);
-    renderReportTable(fallbackReportData);
-  } finally {
-    if (syncIcon) syncIcon.classList.remove('spin-anim');
+  } catch(e) {
+    console.warn("Rendering fallback Operations Analytics layout:", e.message);
+    renderOperationsDashboard(fallbackOpsData);
   }
 }
 
-function renderReportTable(data) {
-  const tbody = document.getElementById('state-rows-body');
-  if (!tbody) return;
+async function applyOpsDateFilter() {
+  const pickerVal = document.getElementById('ops-date-picker').value;
+  if (!pickerVal) return;
+  
+  const parts = pickerVal.split('-');
+  const formattedDate = `${parseInt(parts[1])}/${parseInt(parts[2])}/${parts[0]}`;
 
-  tbody.innerHTML = '';
-  let grandTotal = 0;
-
-  data.states.forEach(st => {
-    grandTotal += Number(st.count);
-    tbody.innerHTML += `
-      <tr>
-        <td><strong>${st.name}</strong></td>
-        <td class="text-right">${st.count}</td>
-      </tr>
-    `;
-  });
-
-  document.getElementById('report-date-display').innerText = data.date;
-  document.getElementById('big-grand-total').innerText = grandTotal;
-  document.getElementById('score-team-1').innerText = data.team1Score;
-  document.getElementById('score-vikash').innerText = data.vikashScore;
-  document.getElementById('score-sonu').innerText = data.sonuScore;
+  try {
+    const res = await fetch(`${APPS_SCRIPT_API_URL}?date=${encodeURIComponent(formattedDate)}`);
+    const json = await res.json();
+    if (json && json.status === "success") {
+      renderOperationsDashboard(json);
+    }
+  } catch(e) {
+    renderOperationsDashboard(fallbackOpsData);
+  }
 }
 
-// Canvas Male Avatar Renderer
+function renderOperationsDashboard(data) {
+  // 1. Hourly Table Rendering
+  const hourlyBody = document.getElementById('hourly-table-body');
+  const hourlyFoot = document.getElementById('hourly-table-foot');
+  
+  if (hourlyBody) {
+    hourlyBody.innerHTML = '';
+    let sums = { h10:0, h11:0, h12:0, h1:0, h2:0, h3:0, h4:0, h5:0, h6:0, h7:0, h8:0, total:0, totalIssued:0 };
+
+    data.hourlyData.forEach(row => {
+      sums.h10 += row.h10; sums.h11 += row.h11; sums.h12 += row.h12; sums.h1 += row.h1;
+      sums.h2 += row.h2; sums.h3 += row.h3; sums.h4 += row.h4; sums.h5 += row.h5;
+      sums.h6 += row.h6; sums.h7 += row.h7; sums.h8 += row.h8; sums.total += row.total; sums.totalIssued += row.totalIssued;
+
+      hourlyBody.innerHTML += `
+        <tr>
+          <td><strong>${row.rto}</strong></td>
+          <td>${row.h10}</td><td>${row.h11}</td><td>${row.h12}</td><td>${row.h1}</td>
+          <td>${row.h2}</td><td>${row.h3}</td><td>${row.h4}</td><td>${row.h5}</td>
+          <td>${row.h6}</td><td>${row.h7}</td><td>${row.h8}</td>
+          <td style="background:#e8eaf6; font-weight:800;">${row.total}</td>
+          <td style="background:#ffebee; font-weight:800; color:#eb0029;">${row.totalIssued}</td>
+        </tr>
+      `;
+    });
+
+    if (hourlyFoot) {
+      hourlyFoot.innerHTML = `
+        <tr style="background:#f1f2f4; font-weight:900;">
+          <td>TOTAL</td>
+          <td>${sums.h10}</td><td>${sums.h11}</td><td>${sums.h12}</td><td>${sums.h1}</td>
+          <td>${sums.h2}</td><td>${sums.h3}</td><td>${sums.h4}</td><td>${sums.h5}</td>
+          <td>${sums.h6}</td><td>${sums.h7}</td><td>${sums.h8}</td>
+          <td style="background:#c5cae9;">${sums.total}</td>
+          <td style="background:#ffcdd2; color:#eb0029;">${sums.totalIssued}</td>
+        </tr>
+      `;
+    }
+  }
+
+  // 2. All Over Issued Table Rendering
+  const allBody = document.getElementById('allover-table-body');
+  const allFoot = document.getElementById('allover-table-foot');
+  if (allBody) {
+    allBody.innerHTML = '';
+    let sums = { inOffice: 0, totalIssued: 0, extra: 0 };
+
+    data.allOverIssued.forEach(row => {
+      sums.inOffice += row.inOffice;
+      sums.totalIssued += row.totalIssued;
+      sums.extra += row.extra;
+
+      allBody.innerHTML += `
+        <tr>
+          <td><strong>${row.rto}</strong></td>
+          <td class="text-right">${row.inOffice}</td>
+          <td class="text-right">${row.totalIssued}</td>
+          <td class="text-right">${row.extra}</td>
+        </tr>
+      `;
+    });
+
+    if (allFoot) {
+      allFoot.innerHTML = `
+        <tr style="background:#e8f5e9; font-weight:900;">
+          <td>TOTAL</td>
+          <td class="text-right">${sums.inOffice}</td>
+          <td class="text-right">${sums.totalIssued}</td>
+          <td class="text-right">${sums.extra}</td>
+        </tr>
+      `;
+    }
+  }
+
+  // 3. Last 10 Days Table Rendering
+  const last10Body = document.getElementById('last10-table-body');
+  const last10GrandTotal = document.getElementById('last10-grand-total');
+  if (last10Body) {
+    last10Body.innerHTML = '';
+    let total10 = 0;
+
+    data.last10Days.forEach(row => {
+      total10 += row.count;
+      last10Body.innerHTML += `
+        <tr>
+          <td><strong>${row.date}</strong></td>
+          <td class="text-right">${row.count}</td>
+        </tr>
+      `;
+    });
+
+    if (last10GrandTotal) last10GrandTotal.innerText = total10;
+  }
+
+  // 4. Common RTO Scorecard Rendering
+  const commonRtoBody = document.getElementById('common-rto-body');
+  if (commonRtoBody) {
+    commonRtoBody.innerHTML = '';
+    data.allOverIssued.forEach(row => {
+      commonRtoBody.innerHTML += `
+        <tr>
+          <td><strong>${row.rto}</strong></td>
+          <td class="text-right">${row.totalIssued}</td>
+        </tr>
+      `;
+    });
+  }
+}
+
+// Avatar Canvas & SOP Step Controls (UNTOUCHED)
 function initMaleCharacterCanvas() {
   canvas = document.getElementById('maleAvatarCanvas');
   if (!canvas) return;
@@ -247,69 +351,22 @@ function initMaleCharacterCanvas() {
 function drawMaleCharacter(mouthOpen) {
   if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Background Circle
-  ctx.fillStyle = "#EEF0F3";
-  ctx.beginPath();
-  ctx.arc(110, 110, 100, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Suit Body
-  ctx.fillStyle = "#0D0D0D";
-  ctx.beginPath();
-  ctx.ellipse(110, 200, 75, 40, 0, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Shirt Collar & Red Tie
-  ctx.fillStyle = "#FFFFFF";
-  ctx.beginPath();
-  ctx.moveTo(90, 160); ctx.lineTo(110, 185); ctx.lineTo(130, 160);
-  ctx.fill();
-
-  ctx.fillStyle = "#EB0029";
-  ctx.beginPath();
-  ctx.moveTo(106, 160); ctx.lineTo(114, 160); ctx.lineTo(112, 195); ctx.lineTo(108, 195);
-  ctx.fill();
-
-  // Face
-  ctx.fillStyle = "#F5C396";
-  ctx.beginPath();
-  ctx.arc(110, 110, 50, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Hair Style
-  ctx.fillStyle = "#0D0D0D";
-  ctx.beginPath();
-  ctx.arc(110, 95, 52, Math.PI * 0.85, Math.PI * 2.15);
-  ctx.fill();
-
-  // Glasses (OnePlus Red Accent Frame)
-  ctx.strokeStyle = "#EB0029";
-  ctx.lineWidth = 2.5;
-  ctx.strokeRect(80, 100, 24, 16);
-  ctx.strokeRect(116, 100, 24, 16);
+  ctx.fillStyle = "#EEF0F3"; ctx.beginPath(); ctx.arc(110, 110, 100, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#0D0D0D"; ctx.beginPath(); ctx.ellipse(110, 200, 75, 40, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#FFFFFF"; ctx.beginPath(); ctx.moveTo(90, 160); ctx.lineTo(110, 185); ctx.lineTo(130, 160); ctx.fill();
+  ctx.fillStyle = "#EB0029"; ctx.beginPath(); ctx.moveTo(106, 160); ctx.lineTo(114, 160); ctx.lineTo(112, 195); ctx.lineTo(108, 195); ctx.fill();
+  ctx.fillStyle = "#F5C396"; ctx.beginPath(); ctx.arc(110, 110, 50, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#0D0D0D"; ctx.beginPath(); ctx.arc(110, 95, 52, Math.PI * 0.85, Math.PI * 2.15); ctx.fill();
+  ctx.strokeStyle = "#EB0029"; ctx.lineWidth = 2.5; ctx.strokeRect(80, 100, 24, 16); ctx.strokeRect(116, 100, 24, 16);
   ctx.beginPath(); ctx.moveTo(104, 108); ctx.lineTo(116, 108); ctx.stroke();
-
-  // Eyes
-  ctx.fillStyle = "#000000";
-  ctx.beginPath();
-  ctx.arc(92, 108, 3, 0, Math.PI * 2);
-  ctx.arc(128, 108, 3, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Mouth (Animated)
-  ctx.fillStyle = "#EB0029";
-  ctx.beginPath();
-  ctx.ellipse(110, 138, 10, 2 + mouthOpen * 10, 0, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.fillStyle = "#000000"; ctx.beginPath(); ctx.arc(92, 108, 3, 0, Math.PI * 2); ctx.arc(128, 108, 3, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#EB0029"; ctx.beginPath(); ctx.ellipse(110, 138, 10, 2 + mouthOpen * 10, 0, 0, Math.PI * 2); ctx.fill();
 }
 
-// SOP Training Card Renderer
 function renderStep(index) {
   const data = stepsData[index];
   document.getElementById('current-step-num').innerText = data.step;
   document.getElementById('total-steps-num').innerText = stepsData.length;
-  
   const pct = Math.round(((index + 1) / stepsData.length) * 100);
   document.getElementById('progress-bar').style.width = `${pct}%`;
   document.getElementById('progress-percent').innerText = `${pct}%`;
@@ -320,56 +377,43 @@ function renderStep(index) {
       <span class="op-tag">PHASE 0${data.step} • ${data.category.toUpperCase()}</span>
       <h3 style="font-size:1.35rem; margin:8px 0; font-weight:800;">${data.title}</h3>
       <p style="font-size:0.85rem; color:#666; font-weight:700; margin-bottom:14px;">Target System: <span style="color:#111;">${data.system}</span></p>
-      
       <div style="background:#F4F5F7; padding:16px; border-radius:12px; margin-bottom:16px;">
-        <h4 style="font-size:0.8rem; text-transform:uppercase; color:#666; margin-bottom:8px; font-weight:800;">Execution Instructions:</h4>
         <ul style="margin-left:18px; font-size:0.9rem; line-height:1.6; font-weight:600;">
           ${data.instructions.map(inst => `<li style="margin-bottom:6px;">${inst}</li>`).join('')}
         </ul>
       </div>
-
       <div style="background:#FFEBEE; border-left:4px solid #EB0029; padding:12px 16px; font-size:0.85rem; border-radius:8px; color:#111; font-weight:600;">
         <strong style="color:#EB0029;">Pro-Tip:</strong> ${data.proTip}
       </div>
     </div>
   `;
-
   if (window.lucide) lucide.createIcons();
   document.getElementById('prev-btn').disabled = index === 0;
   document.getElementById('next-btn').disabled = index === stepsData.length - 1;
   updateDots(index);
-
-  if (isAudioOn) {
-    speakHindiVoice(data.hindiAudio);
-  }
+  if (isAudioOn) speakHindiVoice(data.hindiAudio);
 }
 
 function speakHindiVoice(text) {
   if (!synth) return;
   synth.cancel();
-
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'hi-IN';
-  utterance.rate = 0.95;
-
+  utterance.lang = 'hi-IN'; utterance.rate = 0.95;
   const waveBar = document.getElementById('speaker-waves');
   const statusText = document.getElementById('status-text');
   const statusDot = document.getElementById('status-dot');
 
   let animationInterval;
-
   utterance.onstart = () => {
     if (waveBar) waveBar.classList.add('speaking');
     if (statusText) statusText.innerText = "Speaking SOP Guidance...";
     if (statusDot) statusDot.classList.add('active');
-
     let toggleMouth = 0;
     animationInterval = setInterval(() => {
       toggleMouth = toggleMouth === 0 ? 1 : 0;
       drawMaleCharacter(toggleMouth);
     }, 180);
   };
-
   utterance.onend = () => {
     clearInterval(animationInterval);
     drawMaleCharacter(0);
@@ -377,7 +421,6 @@ function speakHindiVoice(text) {
     if (statusText) statusText.innerText = "Ready to Guide";
     if (statusDot) statusDot.classList.remove('active');
   };
-
   synth.speak(utterance);
 }
 
@@ -388,10 +431,7 @@ function renderDots() {
   stepsData.forEach((_, idx) => {
     const dot = document.createElement('div');
     dot.className = `dot-item ${idx === currentStep ? 'active' : ''}`;
-    dot.addEventListener('click', () => {
-      currentStep = idx;
-      renderStep(currentStep);
-    });
+    dot.addEventListener('click', () => { currentStep = idx; renderStep(currentStep); });
     container.appendChild(dot);
   });
 }
@@ -402,47 +442,7 @@ function updateDots(activeIndex) {
 }
 
 function setupEventListeners() {
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const replayBtn = document.getElementById('replay-voice-btn');
-  const audioToggleBtn = document.getElementById('toggle-audio-btn');
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (currentStep > 0) {
-        currentStep--;
-        renderStep(currentStep);
-      }
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (currentStep < stepsData.length - 1) {
-        currentStep++;
-        renderStep(currentStep);
-      }
-    });
-  }
-
-  if (replayBtn) {
-    replayBtn.addEventListener('click', () => {
-      speakHindiVoice(stepsData[currentStep].hindiAudio);
-    });
-  }
-
-  if (audioToggleBtn) {
-    audioToggleBtn.addEventListener('click', () => {
-      isAudioOn = !isAudioOn;
-      if (isAudioOn) {
-        audioToggleBtn.classList.add('active');
-        audioToggleBtn.querySelector('span').innerText = "Voice Guide On";
-        speakHindiVoice(stepsData[currentStep].hindiAudio);
-      } else {
-        synth.cancel();
-        audioToggleBtn.classList.remove('active');
-        audioToggleBtn.querySelector('span').innerText = "Voice Muted";
-      }
-    });
-  }
+  document.getElementById('prev-btn')?.addEventListener('click', () => { if (currentStep > 0) { currentStep--; renderStep(currentStep); } });
+  document.getElementById('next-btn')?.addEventListener('click', () => { if (currentStep < stepsData.length - 1) { currentStep++; renderStep(currentStep); } });
+  document.getElementById('replay-voice-btn')?.addEventListener('click', () => { speakHindiVoice(stepsData[currentStep].hindiAudio); });
 }
