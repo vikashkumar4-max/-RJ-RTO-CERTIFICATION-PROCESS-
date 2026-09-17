@@ -1,9 +1,9 @@
-// Complete 10-step RJ RTO Process Data with Speech Audio
+// Complete 10-step RJ RTO Process Data with Hindi Voice Audio Texts (Devanagari Script for Proper Pronunciation)
 const stepsData = [
   {
     step: 1,
     title: "Pan India Sheet Check Karein",
-    category: "New order /new installation",
+    category: "Verification Phase",
     system: "Pan India Master Database",
     instructions: [
       "Master Pan India Sheet open karein aur customer request detail verify karein.",
@@ -11,7 +11,7 @@ const stepsData = [
       "Duplication se bachne ke liye vehicle/customer entry ID double-check karein."
     ],
     proTip: "Pan India sheet me search filter (Ctrl + F) ka upayog karke Fast ID ya Vehicle Registration number se khojein.",
-    hindiAudio: "Pehle step me, Pan India Master Sheet check karein. Yahan customer ki saari basic details verify karein ki request Rajasthan RTO ke liye valid hai ya nahi."
+    hindiAudio: "पहले स्टेप में, पैन इंडिया मास्टर शीट चेक करें। यहाँ कस्टमर की सभी डिटेल्स वेरीफाई करें कि रिक्वेस्ट राजस्थान आरटीओ के लिए वैलिड है या नहीं।"
   },
   {
     step: 2,
@@ -24,7 +24,7 @@ const stepsData = [
       "Data formatting standard guidelines ke anusaar hi rakhein."
     ],
     proTip: "Galat sheet me entry hone par activation delay ho sakta hai, isliye Rajasthan sheet hi select karein.",
-    hindiAudio: "Dusre step me, verified details ko RJ Specific Sheet me enter karein. Date aur RTO code sahi se bharna mandatory hai."
+    hindiAudio: "दूसरे स्टेप में, वेरीफाइड डिटेल्स को राजस्थान स्पेसिफिक शीट में एंटर करें। डेट और आरटीओ कोड सही से भरना अनिवार्य है।"
   },
   {
     step: 3,
@@ -37,7 +37,7 @@ const stepsData = [
       "TopUp Transaction ID ko record sheet me save kar lein."
     ],
     proTip: "TopUp hamesha official bank gateway se hi karein aur receipt reference number secure rakhein.",
-    hindiAudio: "Teesre step me, RTO Portal par requirement ke hisab se TopUp balance check karein aur zaroorat ke anusaar top-up poora karein."
+    hindiAudio: "तीसरे स्टेप में, आरटीओ पोर्टल पर आवश्यकता के अनुसार टॉप-अप बैलेंस चेक करें और टॉप-अप पूरा करें।"
   },
   {
     step: 4,
@@ -50,7 +50,7 @@ const stepsData = [
       "Tagging details ko submit karke system status Green hone ka wait karein."
     ],
     proTip: "Vahan portal timeout se bachne ke liye details pehle se copy karke rakhein.",
-    hindiAudio: "Chauthe step me, Govt Vahan Portal par jaakar vehicle aur device details ki Tagging complete karein."
+    hindiAudio: "चौथे स्टेप में, सरकारी वाहन पोर्टल पर जाकर व्हीकल और डिवाइस डिटेल्स की टैगिंग पूरी करें।"
   },
   {
     step: 5,
@@ -63,7 +63,7 @@ const stepsData = [
       "Whitelisting status Active/Approved check karein."
     ],
     proTip: "IMEI number me 1 digit ki bhi galti hone par approval reject ho jayega, 2 baar verify karein.",
-    hindiAudio: "Paanchve step me, RJ NIC Portal par jaakar Device IMEI Number ko whitelist karein aur success status confirm karein."
+    hindiAudio: "पांचवें स्टेप में, राजस्थान एनआईसी पोर्टल पर जाकर डिवाइस का आईएमईआई नंबर व्हाइटलिस्ट करें।"
   },
   {
     step: 6,
@@ -76,7 +76,7 @@ const stepsData = [
       "Clear Status verified aane par hi aage badhein."
     ],
     proTip: "CMD Clear Status ka screenshot audit proof ke liye save karein.",
-    hindiAudio: "Chhate step me, CMD system par Clear Check run karein aur dekhein ki koi error ya backend restriction toh nahi hai."
+    hindiAudio: "छठे स्टेप में, सीएमडी सिस्टम पर क्लियर चेक रन करें और चेक करें कि कोई एरर या बैकएंड रिस्ट्रिक्शन तो नहीं है।"
   },
   {
     step: 7,
@@ -89,7 +89,7 @@ const stepsData = [
       "Active Status 'SUCCESS' confirm karein."
     ],
     proTip: "Response form ki latest entry hi use karein taaki duplicate activation issue na ho.",
-    hindiAudio: "Saatve step me, Pan India Response Form ki details ke saath device activation poora karein."
+    hindiAudio: "सातवें स्टेप में, पैन इंडिया रिस्पॉन्स फॉर्म की डिटेल्स के साथ डिवाइस का एक्टिवेशन पूरा करें।"
   },
   {
     step: 8,
@@ -102,7 +102,7 @@ const stepsData = [
       "Customer ko politely OTP share karne ke liye communicate karein."
     ],
     proTip: "OTP trigger karte hi timing note karein kyunki OTP validity limited hoti hai.",
-    hindiAudio: "Aathve step me, registered mobile number par OTP bhejein aur user se OTP verify karwane ke liye request karein."
+    hindiAudio: "आठवें स्टेप में, रजिस्टर्ड मोबाइल नंबर पर ओटीपी भेजें और यूजर से ओटीपी वेरीफाई करवाएं।"
   },
   {
     step: 9,
@@ -115,7 +115,7 @@ const stepsData = [
       "Download Certificate ko official Work WhatsApp/Telegram Group par share karein."
     ],
     proTip: "Certificate sharing format me Vehicle No aur Customer Name zaroor mention karein.",
-    hindiAudio: "Nave step me, OTP enter karke Final Certificate generate karein aur use official operations group par share karein."
+    hindiAudio: "नौवें स्टेप में, ओटीपी दर्ज करके फाइनल सर्टिफिकेट जनरेट करें और इसे ऑफिसियल ग्रुप पर शेयर करें।"
   },
   {
     step: 10,
@@ -128,13 +128,23 @@ const stepsData = [
       "Process successfully complete ho chuka hai!"
     ],
     proTip: "Sheet close karne se pehle File Save/Auto-sync zaroor verify karein.",
-    hindiAudio: "Dasve aur aakhri step me, Data Sheet me Certificate Issued mark karein aur entry complete karein. Mubarak ho, process complete hua!"
+    hindiAudio: "दसवें और आखिरी स्टेप में, डाटा शीट में सर्टिफिकेट इश्यूड मार्क करें और एंट्री पूरी करें। बधाई हो, प्रोसेस पूरा हुआ!"
   }
 ];
 
 let currentStep = 0;
 let isAudioOn = true;
 let synth = window.speechSynthesis;
+let voices = [];
+
+// Ensure voices are loaded properly in Chrome / Mobile Browsers
+function loadVoices() {
+  voices = synth.getVoices();
+}
+loadVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   renderStep(currentStep);
@@ -253,19 +263,24 @@ function setupEventListeners() {
   });
 }
 
+// Fixed Hindi Voice Function
 function speakHindiInstruction(text) {
   if (!('speechSynthesis' in window)) return;
 
-  synth.cancel();
+  synth.cancel(); // Stop any ongoing speech
 
   const utterance = new SpeechSynthesisUtterance(text);
-  const voices = synth.getVoices();
-  const hindiVoice = voices.find(v => v.lang.includes('hi') || v.lang.includes('HI'));
+  utterance.lang = 'hi-IN'; // Force Hindi language code
+
+  // Find Hindi Voice
+  if (voices.length === 0) voices = synth.getVoices();
+  const hindiVoice = voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi') || v.name.includes('Hindi'));
+  
   if (hindiVoice) {
     utterance.voice = hindiVoice;
   }
-  
-  utterance.rate = 0.95;
+
+  utterance.rate = 0.9; // Clear natural pace
   utterance.pitch = 1.0;
 
   utterance.onstart = () => startTalkingAnimation();
