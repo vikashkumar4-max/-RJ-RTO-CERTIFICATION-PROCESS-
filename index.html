@@ -3,117 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RJ RTO Training Portal - </title>
+  <title>RJ RTO Device Verification Portal - Government of Rajasthan</title>
   <link rel="stylesheet" href="style.css">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top Official Strip -->
-  <div class="gov-top-strip">
-    <div class="gov-container strip-content">
-      <span class="gov-title-tag"><i data-lucide="shield-check"></i>MRATYUNJAY BRAHMAVANSHI </span>
-      <span class="helpline-text"> </span>
+  <!-- Top Official Ribbon Strip -->
+  <div class="gov-top-ribbon">
+    <div class="gov-container flex-between">
+      <div class="gov-emblem-tag">
+        <i data-lucide="shield-check"></i>
+        <span>परिवहन एवं सड़क सुरक्षा विभाग | राजस्थान सरकार (SOP Module)</span>
+      </div>
+      <div class="gov-help-tag">
+        <i data-lucide="phone-call"></i>
+        <span>RTO Helpline: 1800-180-6127</span>
+      </div>
     </div>
   </div>
 
-  <!-- Government Main Header -->
-  <header class="gov-header">
-    <div class="gov-container header-content">
-      <div class="gov-brand">
-        <div class="gov-logo-box">
-          <i data-lucide="building-2"></i>
+  <!-- Rich Header -->
+  <header class="gov-rich-header">
+    <div class="gov-container flex-between">
+      <div class="gov-brand-group">
+        <div class="gov-emblem-badge">
+          <i data-lucide="landmark"></i>
         </div>
         <div class="gov-brand-titles">
-          <h1>सड़क परिवहन एवं राजमार्ग मंत्रालय - आर.टी.ओ. राजस्थान</h1>
-          <h2>RJ RTO Device Certification & Verification Training Module</h2>
+          <h1>सड़क परिवहन एवं राजमार्ग मंत्रालय</h1>
+          <p>RJ RTO Device Certification & SOP Training Portal</p>
         </div>
       </div>
+
       <div class="gov-header-actions">
-        <div class="step-indicator-box">
-          Step <span id="current-step-num">1</span> of <span id="total-steps-num">10</span>
+        <div class="rich-step-badge">
+          <span>STEP</span>
+          <strong id="current-step-num">1</strong> / <span id="total-steps-num">10</span>
         </div>
-        <button id="toggle-audio-btn" class="gov-btn-audio active">
+        <button id="toggle-audio-btn" class="rich-btn-gold active">
           <i data-lucide="volume-2"></i>
-          <span>Audio Guide On</span>
+          <span>Voice Assistance Active</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Body Layout -->
-  <main class="gov-container main-layout">
+  <!-- Main Body Portal Area -->
+  <main class="gov-container portal-layout">
 
-    <!-- LEFT COLUMN: 3D Voice Avatar -->
-    <aside class="left-col">
-      <div class="gov-card avatar-card">
-        <div class="card-gov-header">
-          <i data-lucide="user-check"></i>
-          <span>आर.टी.ओ. प्रशिक्षक (Official Trainer)</span>
+    <!-- LEFT COLUMN: Official Voice Console (NO SCRIPT DISPLAYED) -->
+    <aside class="left-panel">
+      <div class="rich-card console-card">
+        <div class="rich-card-header">
+          <i data-lucide="mic"></i>
+          <span>Official Audio Guide Console</span>
         </div>
 
-        <div class="avatar-stage">
+        <div class="voice-stage">
+          <!-- Voice Waves Animation -->
           <div class="speaker-wave-container" id="speaker-waves">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
             <div class="wave wave3"></div>
           </div>
 
-          <div class="avatar-wrapper" id="avatar-wrapper">
-            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Govt Trainer Avatar" />
-            <div class="avatar-status-badge">
-              <span class="status-dot"></span>
-              <span id="status-text">Ready to Guide</span>
-            </div>
+          <div class="avatar-ring">
+            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Trainer Avatar" />
+          </div>
+
+          <div class="voice-status-pill">
+            <span class="status-dot"></span>
+            <span id="status-text">Audio Ready</span>
           </div>
         </div>
 
-        <div class="dialogue-box">
-          <div class="dialogue-header">
-            <i data-lucide="message-square"></i>
-            <span>Hindi Voice Instruction</span>
-          </div>
-          <p id="dialogue-text">Loading instructions...</p>
-          <button id="replay-voice-btn" class="gov-btn-speech">
-            <i data-lucide="play"></i> Replay Audio
+        <div class="audio-control-box">
+          <button id="replay-voice-btn" class="rich-btn-navy">
+            <i data-lucide="play-circle"></i>
+            <span>Replay Voice Instruction</span>
           </button>
         </div>
+
+        <!-- Hidden Container for JS speech text binding (Kept hidden so JS won't break) -->
+        <p id="dialogue-text" style="display: none !important;"></p>
       </div>
     </aside>
 
-    <!-- RIGHT COLUMN: Instructions Display & Timeline -->
-    <section class="right-col">
+    <!-- RIGHT COLUMN: SOP Instructions & Actions -->
+    <section class="right-panel">
 
-      <!-- Overall Progress -->
-      <div class="gov-card progress-card">
-        <div class="progress-title-row">
-          <span>Overall SOP Completion Progress</span>
+      <!-- Overall SOP Progress Bar -->
+      <div class="rich-card progress-panel">
+        <div class="progress-title flex-between">
+          <span>Overall Module Completion</span>
+          <span class="gold-text" id="progress-percent">10%</span>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar-fill" id="progress-bar"></div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-bar"></div>
         </div>
       </div>
 
-      <!-- Main Dynamic Content Card -->
-      <div class="gov-card content-card" id="step-card-display">
-        <!-- Rendered by JS -->
+      <!-- Main Dynamic Content Display Card -->
+      <div class="rich-card content-panel" id="step-card-display">
+        <!-- Rendered dynamically by script.js -->
       </div>
 
-      <!-- Bottom Navigation Controls -->
-      <footer class="gov-card nav-footer">
-        <button id="prev-btn" class="gov-nav-btn" disabled>
-          <i data-lucide="arrow-left"></i> Previous Step
+      <!-- Footer Control Actions -->
+      <footer class="rich-card nav-footer flex-between">
+        <button id="prev-btn" class="rich-nav-btn" disabled>
+          <i data-lucide="chevron-left"></i> Previous Step
         </button>
 
         <div class="step-dots-timeline" id="step-dots-timeline">
-          <!-- Rendered by JS -->
+          <!-- Rendered dynamically by script.js -->
         </div>
 
-        <button id="next-btn" class="gov-nav-btn primary">
-          Next Step <i data-lucide="arrow-right"></i>
+        <button id="next-btn" class="rich-nav-btn primary">
+          Next Step <i data-lucide="chevron-right"></i>
         </button>
       </footer>
 
