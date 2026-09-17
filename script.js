@@ -2,7 +2,7 @@
 // 1. GOOGLE SHEET LINK CONFIGURATION
 // ==========================================
 // Apni Published Google Sheet ka CSV link yahan paste karein
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vXXXX/pub?output=csv";
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pub?output=csv";
 
 // ==========================================
 // 2. RJ RTO PROCESS DATA (10 STEPS)
