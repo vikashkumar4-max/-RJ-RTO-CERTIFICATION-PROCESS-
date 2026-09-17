@@ -3,127 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RJ RTO Device Verification Portal - Government of Rajasthan</title>
+  <title>National Transport Executive Training Portal</title>
   <link rel="stylesheet" href="style.css">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display (Classic Royal) & Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top Official Ribbon Strip -->
-  <div class="gov-top-ribbon">
-    <div class="gov-container flex-between">
-      <div class="gov-emblem-tag">
-        <i data-lucide="shield-check"></i>
-        <span>परिवहन एवं सड़क सुरक्षा विभाग | राजस्थान सरकार (SOP Module)</span>
+  <!-- Royal Top Strip Bar -->
+  <div class="royal-top-strip">
+    <div class="portal-container flex-between">
+      <div class="emblem-tag">
+        <i data-lucide="award"></i>
+        <span>राष्ट्रीय परिवहन प्रशिक्षण एवं प्रमाणीकरण पोर्टल | भारत सरकार</span>
       </div>
-      <div class="gov-help-tag">
-        <i data-lucide="phone-call"></i>
-        <span>RTO Helpline: 1800-180-6127</span>
+      <div class="top-meta-links">
+        <span><i data-lucide="shield-check"></i> Verified Govt Portal</span>
+        <span class="divider">|</span>
+        <span>Helpline: 1800-180-6127</span>
       </div>
     </div>
   </div>
 
-  <!-- Rich Header -->
-  <header class="gov-rich-header">
-    <div class="gov-container flex-between">
-      <div class="gov-brand-group">
-        <div class="gov-emblem-badge">
+  <!-- Executive Header -->
+  <header class="executive-header">
+    <div class="portal-container flex-between">
+      
+      <!-- Brand & Emblem -->
+      <div class="portal-brand">
+        <div class="royal-emblem-seal">
           <i data-lucide="landmark"></i>
         </div>
-        <div class="gov-brand-titles">
+        <div class="brand-info">
           <h1>सड़क परिवहन एवं राजमार्ग मंत्रालय</h1>
-          <p>RJ RTO Device Certification & SOP Training Portal</p>
+          <p>Ministry of Road Transport and Highways (MoRTH)</p>
         </div>
       </div>
 
-      <div class="gov-header-actions">
-        <div class="rich-step-badge">
-          <span>STEP</span>
-          <strong id="current-step-num">1</strong> / <span id="total-steps-num">10</span>
-        </div>
-        <button id="toggle-audio-btn" class="rich-btn-gold active">
+      <!-- FUTURE READY: Multi-Topic Selector Dropdown -->
+      <div class="topic-selector-wrapper">
+        <label for="training-module-select"><i data-lucide="layers"></i> Training Module:</label>
+        <select id="training-module-select" class="royal-select">
+          <option value="rto-certification" selected>RJ RTO Device Certification SOP</option>
+          <option value="dl-verification" disabled>DL Verification System (Future Module)</option>
+          <option value="vehicle-inspection" disabled>Vehicle Fitness Inspection (Future Module)</option>
+          <option value="gps-vltd" disabled>AIS-140 GPS & VLTD Tracking (Future Module)</option>
+        </select>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button id="toggle-audio-btn" class="royal-gold-btn active">
           <i data-lucide="volume-2"></i>
-          <span>Voice Assistance Active</span>
+          <span>Voice Guide Active</span>
         </button>
       </div>
+
     </div>
   </header>
 
-  <!-- Main Body Portal Area -->
-  <main class="gov-container portal-layout">
+  <!-- Main Multi-Functional Portal Layout -->
+  <main class="portal-container portal-grid">
 
-    <!-- LEFT COLUMN: Official Voice Console (NO SCRIPT DISPLAYED) -->
-    <aside class="left-panel">
-      <div class="rich-card console-card">
-        <div class="rich-card-header">
+    <!-- LEFT SIDEBAR: Audio Console & Quick Navigation -->
+    <aside class="sidebar-column">
+
+      <!-- Executive Audio Console (NO TEXT SCRIPT VISIBLE) -->
+      <div class="royal-card audio-console-card">
+        <div class="card-classic-header">
           <i data-lucide="mic"></i>
-          <span>Official Audio Guide Console</span>
+          <span>Official Audio Assistance</span>
         </div>
 
-        <div class="voice-stage">
-          <!-- Voice Waves Animation -->
+        <div class="speaker-stage">
+          <!-- 3D Wave Visualizer Rings -->
           <div class="speaker-wave-container" id="speaker-waves">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
             <div class="wave wave3"></div>
           </div>
 
-          <div class="avatar-ring">
-            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Trainer Avatar" />
+          <div class="avatar-classic-frame">
+            <img id="avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Govt Official Avatar" />
           </div>
 
-          <div class="voice-status-pill">
-            <span class="status-dot"></span>
-            <span id="status-text">Audio Ready</span>
+          <div class="voice-badge-pill">
+            <span class="pulse-dot"></span>
+            <span id="status-text">Voice Assistance Ready</span>
           </div>
         </div>
 
-        <div class="audio-control-box">
-          <button id="replay-voice-btn" class="rich-btn-navy">
+        <div class="audio-actions-area">
+          <button id="replay-voice-btn" class="royal-navy-btn">
             <i data-lucide="play-circle"></i>
-            <span>Replay Voice Instruction</span>
+            <span>Replay Audio Instruction</span>
           </button>
         </div>
 
-        <!-- Hidden Container for JS speech text binding (Kept hidden so JS won't break) -->
+        <!-- Hidden script holder to keep JavaScript functionality untouched -->
         <p id="dialogue-text" style="display: none !important;"></p>
       </div>
+
+      <!-- FUTURE EXTENSION CARD: Module Directory Panel -->
+      <div class="royal-card module-directory-card">
+        <div class="card-sub-header">
+          <i data-lucide="book-open"></i>
+          <span>Available Training Topics</span>
+        </div>
+        <ul class="topic-list">
+          <li class="active">
+            <i data-lucide="check-circle-2"></i>
+            <span>RJ RTO Device Certification SOP</span>
+          </li>
+          <li class="locked">
+            <i data-lucide="lock"></i>
+            <span>Driving License Automated Track</span>
+          </li>
+          <li class="locked">
+            <i data-lucide="lock"></i>
+            <span>Pollution Under Control (PUC) SOP</span>
+          </li>
+        </ul>
+      </div>
+
     </aside>
 
-    <!-- RIGHT COLUMN: SOP Instructions & Actions -->
-    <section class="right-panel">
+    <!-- RIGHT MAIN CONTENT: Dynamic Step Viewport -->
+    <section class="main-column">
 
-      <!-- Overall SOP Progress Bar -->
-      <div class="rich-card progress-panel">
-        <div class="progress-title flex-between">
-          <span>Overall Module Completion</span>
-          <span class="gold-text" id="progress-percent">10%</span>
+      <!-- Top Module Bar & Progress -->
+      <div class="royal-card progress-card flex-between">
+        <div class="module-meta">
+          <span class="meta-label">ACTIVE TOPIC:</span>
+          <strong class="meta-title">RJ RTO Device Certification & Verification SOP</strong>
+        </div>
+        <div class="step-count-pill">
+          STEP <span id="current-step-num">1</span> OF <span id="total-steps-num">10</span>
+        </div>
+      </div>
+
+      <!-- Overall Module Bar -->
+      <div class="royal-card progress-bar-panel">
+        <div class="progress-info flex-between">
+          <span>Overall Module Progress</span>
+          <span id="progress-percent" class="gold-accent-text">10% Completed</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="progress-bar"></div>
         </div>
       </div>
 
-      <!-- Main Dynamic Content Display Card -->
-      <div class="rich-card content-panel" id="step-card-display">
-        <!-- Rendered dynamically by script.js -->
+      <!-- Dynamic Content Body (JS Rendered) -->
+      <div class="royal-card dynamic-content-card" id="step-card-display">
+        <!-- Rendered by script.js -->
       </div>
 
-      <!-- Footer Control Actions -->
-      <footer class="rich-card nav-footer flex-between">
-        <button id="prev-btn" class="rich-nav-btn" disabled>
-          <i data-lucide="chevron-left"></i> Previous Step
+      <!-- Classic Navigation Footer -->
+      <footer class="royal-card nav-footer flex-between">
+        <button id="prev-btn" class="classic-nav-btn" disabled>
+          <i data-lucide="arrow-left"></i> Previous Step
         </button>
 
         <div class="step-dots-timeline" id="step-dots-timeline">
-          <!-- Rendered dynamically by script.js -->
+          <!-- Rendered by script.js -->
         </div>
 
-        <button id="next-btn" class="rich-nav-btn primary">
-          Next Step <i data-lucide="chevron-right"></i>
+        <button id="next-btn" class="classic-nav-btn primary">
+          Next Step <i data-lucide="arrow-right"></i>
         </button>
       </footer>
 
