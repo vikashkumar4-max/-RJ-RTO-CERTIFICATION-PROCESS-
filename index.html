@@ -42,11 +42,12 @@
         </div>
       </div>
 
-      <!-- FUTURE READY: Multi-Topic Selector Dropdown -->
+      <!-- SUBJECT MODULE SELECTOR (WITH TODAY PROGRESS REPORT) -->
       <div class="topic-selector-wrapper">
         <label for="training-module-select"><i data-lucide="layers"></i> SUBJECT MODULE:</label>
-        <select id="training-module-select" class="royal-select">
+        <select id="training-module-select" class="royal-select" onchange="handleModuleSwitch(this.value)">
           <option value="rto-certification" selected>RJ RTO Device Certification SOP</option>
+          <option value="today-progress-report">📊 Today Progress Report</option>
           <option value="dl-verification" disabled>DL Verification System (Future Module)</option>
           <option value="vehicle-inspection" disabled>Vehicle Fitness Inspection (Future Module)</option>
           <option value="gps-vltd" disabled>AIS-140 GPS & VLTD Tracking (Future Module)</option>
@@ -70,7 +71,7 @@
     <!-- LEFT SIDEBAR: Audio Console & Quick Navigation -->
     <aside class="sidebar-column">
 
-      <!-- Executive Audio Console (NO TEXT SCRIPT VISIBLE) -->
+      <!-- Executive Audio Console -->
       <div class="royal-card audio-console-card">
         <div class="card-classic-header">
           <i data-lucide="mic"></i>
@@ -106,17 +107,25 @@
         <p id="dialogue-text" style="display: none !important;"></p>
       </div>
 
-      <!-- FUTURE EXTENSION CARD: Module Directory Panel -->
+      <!-- MODULE DIRECTORY PANEL (WITH CLICKABLE TODAY REPORT) -->
       <div class="royal-card module-directory-card">
         <div class="card-sub-header">
           <i data-lucide="book-open"></i>
           <span>Available Training Topics</span>
         </div>
         <ul class="topic-list">
-          <li class="active">
+          <li id="menu-rto-cert" class="active" onclick="handleModuleSwitch('rto-certification')">
             <i data-lucide="check-circle-2"></i>
             <span>RJ RTO Device Certification Process</span>
           </li>
+
+          <!-- TODAY PROGRESS REPORT SIDEBAR BUTTON -->
+          <li id="menu-today-report" class="highlight-report-item" onclick="handleModuleSwitch('today-progress-report')">
+            <i data-lucide="file-spreadsheet" class="gold-icon"></i>
+            <span>Today Progress Report</span>
+            <span class="live-tag-pill">LIVE</span>
+          </li>
+
           <li class="locked">
             <i data-lucide="lock"></i>
             <span>Common RTO certification process </span>
@@ -130,54 +139,123 @@
 
     </aside>
 
-    <!-- RIGHT MAIN CONTENT: Dynamic Step Viewport -->
+    <!-- RIGHT MAIN CONTENT AREA -->
     <section class="main-column">
 
-      <!-- Top Module Bar & Progress -->
-      <div class="royal-card progress-card flex-between">
-        <div class="module-meta">
-          <span class="meta-label">ACTIVE TOPIC:</span>
-          <strong class="meta-title">RJ RTO Device Certification & Verification SOP</strong>
+      <!-- VIEW 1: TRAINING STEP VIEWPORT (DEFAULT) -->
+      <div id="training-steps-viewport">
+        <!-- Top Module Bar & Progress -->
+        <div class="royal-card progress-card flex-between">
+          <div class="module-meta">
+            <span class="meta-label">ACTIVE TOPIC:</span>
+            <strong class="meta-title">RJ RTO Device Certification & Verification SOP</strong>
+          </div>
+          <div class="step-count-pill">
+            STEP <span id="current-step-num">1</span> OF <span id="total-steps-num">10</span>
+          </div>
         </div>
-        <div class="step-count-pill">
-          STEP <span id="current-step-num">1</span> OF <span id="total-steps-num">10</span>
+
+        <!-- Overall Module Bar -->
+        <div class="royal-card progress-bar-panel">
+          <div class="progress-info flex-between">
+            <span>Overall Module Progress</span>
+            <span id="progress-percent" class="gold-accent-text">10% Completed</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-bar"></div>
+          </div>
         </div>
-      </div>
 
-      <!-- Overall Module Bar -->
-      <div class="royal-card progress-bar-panel">
-        <div class="progress-info flex-between">
-          <span>Overall Module Progress</span>
-          <span id="progress-percent" class="gold-accent-text">10% Completed</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-bar"></div>
-        </div>
-      </div>
-
-      <!-- Dynamic Content Body (JS Rendered) -->
-      <div class="royal-card dynamic-content-card" id="step-card-display">
-        <!-- Rendered by script.js -->
-      </div>
-
-      <!-- Classic Navigation Footer -->
-      <footer class="royal-card nav-footer flex-between">
-        <button id="prev-btn" class="classic-nav-btn" disabled>
-          <i data-lucide="arrow-left"></i> Previous Step
-        </button>
-
-        <div class="step-dots-timeline" id="step-dots-timeline">
+        <!-- Dynamic Content Body (JS Rendered) -->
+        <div class="royal-card dynamic-content-card" id="step-card-display">
           <!-- Rendered by script.js -->
         </div>
 
-        <button id="next-btn" class="classic-nav-btn primary">
-          Next Step <i data-lucide="arrow-right"></i>
-        </button>
-      </footer>
+        <!-- Classic Navigation Footer -->
+        <footer class="royal-card nav-footer flex-between">
+          <button id="prev-btn" class="classic-nav-btn" disabled>
+            <i data-lucide="arrow-left"></i> Previous Step
+          </button>
+
+          <div class="step-dots-timeline" id="step-dots-timeline">
+            <!-- Rendered by script.js -->
+          </div>
+
+          <button id="next-btn" class="classic-nav-btn primary">
+            Next Step <i data-lucide="arrow-right"></i>
+          </button>
+        </footer>
+      </div>
+
+      <!-- VIEW 2: TODAY PROGRESS GOOGLE SHEET REPORT CARD -->
+      <div id="google-sheet-report-viewport" style="display: none;">
+        <div class="royal-card report-container-card">
+          <div class="report-header-flex flex-between">
+            <div class="report-meta-info">
+              <span class="live-status-badge"><i data-lucide="radio"></i> LIVE DATABASE SYNC</span>
+              <h2>Today Progress Report</h2>
+              <p>Wheelseye AIS Team Real-time Progress & Inspection Analytics</p>
+            </div>
+            <div class="report-btn-group">
+              <button class="royal-gold-btn" onclick="refreshReportSheet()">
+                <i data-lucide="rotate-cw"></i> Refresh
+              </button>
+            </div>
+          </div>
+
+          <!-- Google Sheet iFrame Container -->
+          <div class="sheet-frame-holder">
+            <iframe 
+              id="report-google-sheet-iframe" 
+              src="<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTfLG89aVvyvEEACEQYDyqtYjY2TZLvhYwSs-nLhQBGprVV1e3LrsQFbx3wwEN7WIMRDhutbfNY3a58/pubhtml?gid=780031891&amp;single=true&amp;widget=true&amp;headers=false"></iframe>" 
+              frameborder="0" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
 
     </section>
 
   </main>
+
+  <!-- Module Switcher Script -->
+  <script>
+    function handleModuleSwitch(selectedModule) {
+      const trainingView = document.getElementById('training-steps-viewport');
+      const reportView = document.getElementById('google-sheet-report-viewport');
+      const selectDropdown = document.getElementById('training-module-select');
+      const itemRto = document.getElementById('menu-rto-cert');
+      const itemReport = document.getElementById('menu-today-report');
+
+      if (selectedModule === 'today-progress-report') {
+        trainingView.style.display = 'none';
+        reportView.style.display = 'block';
+
+        if(selectDropdown) selectDropdown.value = 'today-progress-report';
+        if(itemRto) itemRto.classList.remove('active');
+        if(itemReport) itemReport.classList.add('active');
+      } else {
+        trainingView.style.display = 'block';
+        reportView.style.display = 'none';
+
+        if(selectDropdown) selectDropdown.value = 'rto-certification';
+        if(itemRto) itemRto.classList.add('active');
+        if(itemReport) itemReport.classList.remove('active');
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    function refreshReportSheet() {
+      const iframe = document.getElementById('report-google-sheet-iframe');
+      if (iframe) {
+        iframe.src = iframe.src;
+      }
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>
