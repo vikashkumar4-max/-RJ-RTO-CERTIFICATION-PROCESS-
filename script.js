@@ -375,3 +375,89 @@ async function fetchLiveDataFromSheet() {
     console.log("Sheet link active nahi hai, default static values show hongi:", error);
   }
 }
+// Default Fallback Data (Agar CSV Load na ho)
+const defaultReportData = {
+  date: "9/17/2026",
+  states: [
+    { name: "HR-RTO", count: 76 },
+    { name: "PB-RTO", count: 20 },
+    { name: "GJ-RTO", count: 43 },
+    { name: "DD-RTO", count: 2 },
+    { name: "AS-RTO", count: 6 },
+    { name: "AP-RTO", count: 3 },
+    { name: "AR-RTO", count: 0 },
+    { name: "NL-RTO", count: 9 },
+    { name: "JK-RTO", count: 7 },
+    { name: "JH-RTO", count: 0 },
+    { name: "TS-RTO", count: 0 }
+  ],
+  team1Score: 76,
+  vikashScore: 30,
+  sonuScore: 61
+};
+
+async function fetchLiveDataFromSheet() {
+  try {
+    const response = await fetch(GOOGLE_SHEET_CSV_URL);
+    if (!response.ok) throw new Error("Network response was not ok");
+    
+    const csvText = await response.text();
+    const rows = csvText.split('\n').map(row => row.split(','));
+
+    // Parsed Data Mapping (CSV structure ke hisab se index adjust karein)
+    if (rows.length > 1) {
+      // Example Parsing Logic
+      const states = [];
+      let total = 0;
+
+      // Assuming Row 1 onwards has State and Count
+      for (let i = 1; i <= 11; i++) {
+        if (rows[i]) {
+          const stateName = rows[i][0]?.trim() || "";
+          const count = parseInt(rows[i][1]?.trim()) || 0;
+          if(stateName) {
+            states.push({ name: stateName, count: count });
+            total += count;
+          }
+        }
+      }
+
+      renderReportTable({
+        date: rows[1][4]?.trim() || "9/17/2026",
+        states: states,
+        team1Score: rows[1][2]?.trim() || 76,
+        vikashScore: rows[2][2]?.trim() || 30,
+        sonuScore: rows[3][2]?.trim() || 61
+      });
+    }
+  } catch (error) {
+    console.log("Using Default Report Layout Data", error);
+    renderReportTable(defaultReportData);
+  }
+}
+
+function renderReportTable(data) {
+  const tbody = document.getElementById('state-rows-body');
+  if(!tbody) return;
+
+  tbody.innerHTML = '';
+  let grandTotal = 0;
+
+  data.states.forEach(st => {
+    grandTotal += Number(st.count);
+    tbody.innerHTML += `
+      <tr>
+        <td>${st.name}</td>
+        <td>${st.count}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById('report-date-display').innerText = data.date;
+  document.getElementById('grand-total-val').innerText = grandTotal;
+  document.getElementById('big-grand-total').innerText = grandTotal;
+
+  document.getElementById('score-team-1').innerText = data.team1Score;
+  document.getElementById('score-vikash').innerText = data.vikashScore;
+  document.getElementById('score-sonu').innerText = data.sonuScore;
+}
