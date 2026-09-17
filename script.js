@@ -6,12 +6,12 @@ const stepsData = [
     category: "Verification Phase",
     system: "Pan India Master Database",
     instructions: [
-      "Master Pan India Sheet open karein aur customer request detail verify karein.",
+      "Sabse pehle Pan India Response Sheet open karein aur Rajasthan RTO ke naye installation requests verify karein. Iske baad device category ke anusaar respective TopUp Sheet me accurate entry karein..",
       "Check karein ki Rajasthan (RJ) RTO ke liye request valid aur pending status me hai ya nahi.",
       "Duplication se bachne ke liye vehicle/customer entry ID double-check karein."
     ],
-    proTip: "Pan India sheet me search filter (Ctrl + F) ka upayog karke Fast ID ya Vehicle Registration number se khojein.",
-    hindiAudio: "पहले स्टेप में, पैन इंडिया मास्टर शीट चेक करें। यहाँ कस्टमर की सभी डिटेल्स वेरीफाई करें कि रिक्वेस्ट राजस्थान आरटीओ के लिए वैलिड है या नहीं।"
+    proTip: "⚠️ Chetavni / Tip: Galat sheet ya galat category me entry karne se aage ka poora process blocked ho sakta hai.",
+    hindiAudio: "सबसे पहले पैन इंडिया रिस्पॉन्स शीट ओपन करके राजस्थान आरटीओ के नए इंस्टॉलेशन चेक करें। इसके बाद डिवाइस के प्रकार के अनुसार सही टॉप-अप शीट में एंट्री दर्ज करें।"
   },
   {
     step: 2,
@@ -23,8 +23,8 @@ const stepsData = [
       "Date, Vehicle Type, Owner Name, aur Regional RTO Code dhyaan se fill karein.",
       "Data formatting standard guidelines ke anusaar hi rakhein."
     ],
-    proTip: "Galat sheet me entry hone par activation delay ho sakta hai, isliye Rajasthan sheet hi select karein.",
-    hindiAudio: "दूसरे स्टेप में, वेरीफाइड डिटेल्स को राजस्थान स्पेसिफिक शीट में एंटर करें। डेट और आरटीओ कोड सही से भरना अनिवार्य है।"
+    proTip: "Galat package wale vehicle par aage kaam na karein, ise turant remark karke hold par daalein.",
+    hindiAudio: " वेरीफाइड डिटेल्स को राजस्थान स्पेसिफिक शीट में एंटर करें। डेट और आरटीओ कोड सही से भरना अनिवार्य है।व्हीकल नंबर को कस्टमर 360 में सर्च करें और पैकेज वेरीफाई करें। अगर पैकेज सही है तभी आगे बढ़ें, वरना रीमार्क में राँग पैकेज सिलेक्टेड दर्ज करके होल्ड करें।अलर्ट डिवाइस में व्हीकल सर्च करके उसका आईएमईआई, सीरियल नंबर, आईसीसीआईडी और ई-सिम नंबर टॉप-अप शीट में सही-सही दर्ज करें"
   },
   {
     step: 3,
@@ -37,7 +37,7 @@ const stepsData = [
       "TopUp Transaction ID ko record sheet me save kar lein."
     ],
     proTip: "TopUp hamesha official bank gateway se hi karein aur receipt reference number secure rakhein.",
-    hindiAudio: "तीसरे स्टेप में, आरटीओ पोर्टल पर आवश्यकता के अनुसार टॉप-अप बैलेंस चेक करें और टॉप-अप पूरा करें।"
+    hindiAudio: "आईसीसीआईडी के ज़रिये ऑफिसियल पोर्टल पर जाकर टॉप-अप बैलेंस चेक करें। पैकेज के अनुसार आवश्यकता पड़ने पर टॉप-अप पूरा करें और शीट में एंट्री करना न भूलें।"
   },
   {
     step: 4,
@@ -50,7 +50,7 @@ const stepsData = [
       "Tagging details ko submit karke system status Green hone ka wait karein."
     ],
     proTip: "Vahan portal timeout se bachne ke liye details pehle se copy karke rakhein.",
-    hindiAudio: "चौथे स्टेप में, सरकारी वाहन पोर्टल पर जाकर व्हीकल और डिवाइस डिटेल्स की टैगिंग पूरी करें।"
+    hindiAudio: "वाहन पोर्टल पर जाकर व्हीकल नंबर की टैगिंग करें। यदि कोई  इश्यू दिखे, तो उसे तुरंत ग्रुप पर शेयर करके रिसॉल्व करवाएं।"
   },
   {
     step: 5,
@@ -63,7 +63,7 @@ const stepsData = [
       "Whitelisting status Active/Approved check karein."
     ],
     proTip: "IMEI number me 1 digit ki bhi galti hone par approval reject ho jayega, 2 baar verify karein.",
-    hindiAudio: "पांचवें स्टेप में, राजस्थान एनआईसी पोर्टल पर जाकर डिवाइस का आईएमईआई नंबर व्हाइटलिस्ट करें।"
+    hindiAudio: "राजस्थान एनआईसी पोर्टल पर जाकर डिवाइस का आईएमईआई नंबर व्हाइटलिस्ट करें। इसके अप्रूव होने पर ही सर्टिफिकेट का प्रोसेस शुरू होगा"
   },
   {
     step: 6,
@@ -76,7 +76,7 @@ const stepsData = [
       "Clear Status verified aane par hi aage badhein."
     ],
     proTip: "CMD Clear Status ka screenshot audit proof ke liye save karein.",
-    hindiAudio: "छठे स्टेप में, सीएमडी सिस्टम पर क्लियर चेक रन करें और चेक करें कि कोई एरर या बैकएंड रिस्ट्रिक्शन तो नहीं है।"
+    hindiAudio: "अब एक्टिवेशन प्रोसेस के लिए सरकारी गाइडलाइन्स के अनुसार सभी निर्देशों का पालन करें और सभी आवश्यक सिस्टम चेक्स क्लियर करें।"
   },
   {
     step: 7,
@@ -89,7 +89,7 @@ const stepsData = [
       "Active Status 'SUCCESS' confirm karein."
     ],
     proTip: "Response form ki latest entry hi use karein taaki duplicate activation issue na ho.",
-    hindiAudio: "सातवें स्टेप में, पैन इंडिया रिस्पॉन्स फॉर्म की डिटेल्स के साथ डिवाइस का एक्टिवेशन पूरा करें।"
+    hindiAudio: "एक्टिवेशन चेक्स पूरे होने के बाद व्हीकल ओनर की सभी आवश्यक जानकारी ध्यानपूर्वक भरें और फॉर्म सबमिट करें।"
   },
   {
     step: 8,
@@ -102,7 +102,7 @@ const stepsData = [
       "Customer ko politely OTP share karne ke liye communicate karein."
     ],
     proTip: "OTP trigger karte hi timing note karein kyunki OTP validity limited hoti hai.",
-    hindiAudio: "आठवें स्टेप में, रजिस्टर्ड मोबाइल नंबर पर ओटीपी भेजें और यूजर से ओटीपी वेरीफाई करवाएं।"
+    hindiAudio: "सबमिट करने के बाद ओनर के मोबाइल पर गया हुआ ओटीपी प्राप्त करके दर्ज करें। ओटीपी वेरीफाई होते ही सर्टिफिकेट जनरेट हो जाएगा"
   },
   {
     step: 9,
@@ -115,7 +115,7 @@ const stepsData = [
       "Download Certificate ko official Work WhatsApp/Telegram Group par share karein."
     ],
     proTip: "Certificate sharing format me Vehicle No aur Customer Name zaroor mention karein.",
-    hindiAudio: "नौवें स्टेप में, ओटीपी दर्ज करके फाइनल सर्टिफिकेट जनरेट करें और इसे ऑफिसियल ग्रुप पर शेयर करें।"
+    hindiAudio: "जनरेट हुआ सर्टिफिकेट और वाहन पोर्टल से फिटमेंट लेटर डाउनलोड करके कंप्यूटर में सेव करें। फिर इन दोनों पेपर्स को ऑफिसियल व्हाट्सएप ग्रुप पर शेयर करके टास्क पूरा करें। धन्यवाद!"
   },
   {
     step: 10,
@@ -128,7 +128,7 @@ const stepsData = [
       "Process successfully complete ho chuka hai!"
     ],
     proTip: "Sheet close karne se pehle File Save/Auto-sync zaroor verify karein.",
-    hindiAudio: "दसवें और आखिरी स्टेप में, डाटा शीट में सर्टिफिकेट इश्यूड मार्क करें और एंट्री पूरी करें। बधाई हो, प्रोसेस पूरा हुआ!"
+    hindiAudio: " बधाई हो, प्रोसेस पूरा हुआ!"
   }
 ];
 
